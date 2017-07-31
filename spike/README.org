@@ -1,0 +1,34 @@
+#+TITLE: Coding ideas
+#+STARTUP: showall
+#+AUTHOR: ChienYu Lin
+#+EMAIL: cy20lin@google.com
+
+* External Libraries
+
+** Currently used 
+
+  - boost :: 
+    - boost.system :: for system error code handling
+    - boost.asio :: for asynchronous operations, network io, ...etc
+  - fmt :: for formatting strings 
+  - opencv :: for image processing
+  - msgpack-c :: serialize and deserialize objects in order to transfer object between networks
+  - json :: for converting string into json object and then serialize into msgpack format
+
+http://msgpack.org/
+https://github.com/msgpack/msgpack-c
+http://www.boost.org/doc/libs/1_64_0/doc/html/boost_asio.html
+http://www.boost.org/doc/libs/1_64_0/
+http://fmtlib.net/latest/index.html
+https://github.com/nlohmann/json
+
+** Planned 
+
+  - boost :: 
+    - boost.coroutine2, boost.context, boost.fiber :: 
+  - qt5 :: for gui support
+  - live555 :: for =RTSP=, =RTP=
+
+* Component dependencies
+
+

@@ -1,0 +1,46 @@
+#+TITLE: target_create
+#+STARTUP: showall
+#+AUTHOR: ChienYu Lin
+#+EMAIL: cy20lin@google.com
+
+* description
+
+  Create a specific type of target. This function is intended to be a
+  generic target creating interface.
+
+  #+BEGIN_SRC cmake
+    target_create(<target> <type> [<maybe_subtype>] [<arg>]...)
+    # <type> ::= EXECUTABLE | LIBRARY | CUSTOM
+  #+END_SRC 
+
+*** Create an =EXECUTABLE= target
+
+    Add an executable to the project using the specified source files. 
+
+    #+BEGIN_SRC cmake
+      target_create(<target> EXECUTABLE [<arg>]...)
+      # is equivalent to follwoing commands
+      add_executable(<target> ...)
+    #+END_SRC 
+
+*** Create a =LIBRARY= target
+
+    Add an executable to the project using the specified source files. 
+
+    #+BEGIN_SRC cmake
+      target_create(<target> LIBRARY <subtype> [<arg>]...)
+      # is equivalent to follwoing commands
+      add_library(<target> <subtype> [<arg>]...)
+      # <subtype> ::= STATIC | SHARED | MODULE | ALIAS | INTEFRACE | OBJECT
+    #+END_SRC 
+
+*** Create a =CUSTOM= target
+
+    Add a target with no output so it will always be built.
+
+    #+BEGIN_SRC cmake
+      target_create(<target> CUSTOM [<arg>]...)
+      # is equivalent to follwoing commands
+      add_custom_target(<target> [<arg>]...)
+      # <subtype> ::= STATIC | SHARED | MODULE | ALIAS 
+    #+END_SRC 

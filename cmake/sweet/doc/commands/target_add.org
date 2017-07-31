@@ -1,0 +1,105 @@
+#+TITLE: target_add
+#+STARTUP: showall
+#+AUTHOR: ChienYu Lin
+#+EMAIL: cy20lin@google.com
+
+* description
+
+  Add and apply specific =<type>= of =[<setting>]...= into =<target>=. 
+  This function is intended to be a generic target manipulating interface.
+
+  #+BEGIN_SRC cmake
+    target_add(<target> <type> <settings...>)
+    # <type> ::= PROPERTIES  | SOURCES  | LIBRARIES | INCLUDES | FEATURES | OPTIONS |
+    #            DEFINITIONS | NOTHING  | PACKAGES  | CONFIGS  | TARGETS  | AUTO
+  #+END_SRC 
+
+*** Set properties
+
+    Targets can have properties that affect how they are built. [[https://cmake.org/cmake/help/v3.1/command/set_target_properties.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> PROPERTIES [<property> <value>]...)
+      # is equivalent to follwoing commands
+      set_target_properties(<target> PROPERTIES [<property> <value>]...)
+    #+END_SRC
+
+*** Add sources
+
+    Add sources to a target. [[https://cmake.org/cmake/help/v3.1/command/target_sources.html][More...]]
+
+    #+BEGIN_SRC cmake 
+      target_add(<target> SOURCES )
+      # is equivalent to follwoing commands
+      target_sources(<target> ) 
+    #+END_SRC
+
+*** Include directories
+
+    Add include directories to a target. [[https://cmake.org/cmake/help/v3.1/command/target_include_directories.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> INCLUDES <arg>...)
+      # is equivalent to follwoing commands
+      target_include_directories(<target> <arg>...)
+    #+END_SRC
+
+*** Link libraries
+
+    Link a target to given libraries. [[https://cmake.org/cmake/help/v3.1/command/target_link_libraries.html][More...]] 
+
+    #+BEGIN_SRC cmake
+      target_add(<target> LIBRARIES <arg>...) 
+      # is equivalent to follwoing commands
+      target_link_libraries(<target> <arg>...)
+    #+END_SRC
+
+*** Set compile options
+
+    Add compile options to a target. [[https://cmake.org/cmake/help/v3.1/command/target_compile_definitions.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> OPTIONS <arg>...) 
+      # is equivalent to follwoing commands
+      target_compile_options(<target> <arg>...)
+    #+END_SRC
+
+*** Set compile definitions
+
+    Add compile definitions to a target. [[https://cmake.org/cmake/help/v3.8/command/target_compile_definitions.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> DEFINITIONS <arg>...) 
+      # is equivalent to follwoing commands
+      target_compile_definitions(<target> <arg>...)
+    #+END_SRC
+
+*** Set compile features
+
+    Add expected compiler features to a target. [[https://cmake.org/cmake/help/v3.1/command/target_compile_features.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> FEATURES <arg>...) 
+      # is equivalent to follwoing commands
+      target_compile_features(<target> <arg>...)
+    #+END_SRC
+
+*** Add dependencies
+
+    Add a dependency between top-level targets. [[https://cmake.org/cmake/help/v3.1/command/add_dependencies.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> DEPENDENCIES <arg>...) 
+      # is equivalent to follwoing commands
+      add_dependencies(<target> <arg>...)
+    #+END_SRC
+
+*** Add custom commands
+
+    Add a custom build rule to the generated build system. [[https://cmake.org/cmake/help/v3.1/command/add_custom_command.html][More...]]
+
+    #+BEGIN_SRC cmake
+      target_add(<target> CUSTOM_COMMAND <arg>...) 
+      # is equivalent to follwoing commands
+      add_custom_command(TARGET <target> <arg>...)
+    #+END_SRC

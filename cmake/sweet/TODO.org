@@ -1,0 +1,23 @@
+#+TITLE: TODO
+#+STARTUP: showall
+#+AUTHOR: ChienYu Lin
+#+EMAIL: cy20lin@google.com
+
+* Auto globbing source files                                        :PENDING:
+
+  Globbing needed source filesa at configure time, and auto reconfigure 
+  while the globbed-file list has changed in build time, avoid potential 
+  building failure due to changes in source tree.
+
+** Reference 
+
+ + [[http://stackoverflow.com/questions/1027247/specify-source-files-globally-with-glob][Specify source files globally with GLOB?]] 
+
+* Customizability                                                   :PENDING:
+ 
+  Provide a way for users to extend features in =target_create=, =target_add=,
+  =config_add= ...etc functions.
+
+* Function naming 
+
+  Add =sweet_= prefixed function name.

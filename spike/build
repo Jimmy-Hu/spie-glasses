@@ -1,0 +1,35 @@
+#!/bin/sh
+g++ \
+    "${@}" \
+    -fpermissive \
+    -isystem=/local/include \
+    -I./include \
+    -L/local/lib \
+    -lpthread \
+    -lfmt \
+    -lmsgpackc \
+    -lboost_system \
+    -lboost_thread \
+    -lboost_filesystem \
+    -lopencv_calib3d \
+    -lopencv_core \
+    -lopencv_features2d \
+    -lopencv_flann \
+    -lopencv_highgui \
+    -lopencv_imgcodecs \
+    -lopencv_imgproc \
+    -lopencv_ml \
+    -lopencv_objdetect \
+    -lopencv_photo \
+    -lopencv_shape \
+    -lopencv_stitching \
+    -lopencv_superres \
+    -lopencv_video \
+    -lopencv_videoio \
+    -lopencv_videostab \
+    -o$(echo "$1" | sed 's/\.cpp$//g')
+
+    # -lwsock32 \
+    # -lws2_32 \
+    # -lopencv_viz \
+    # -lyaml-cpp \
