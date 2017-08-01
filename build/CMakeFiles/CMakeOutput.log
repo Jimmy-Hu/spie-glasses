@@ -28,17 +28,17 @@ The CXX compiler identification is GNU, found in "D:/GitHub/spie-glasses/build/C
 Determining if the C compiler works passed with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_7e349"
-[1/2] Building C object CMakeFiles/cmTC_7e349.dir/testCCompiler.c.obj
-[2/2] Linking C executable cmTC_7e349.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_c3780"
+[1/2] Building C object CMakeFiles/cmTC_c3780.dir/testCCompiler.c.obj
+[2/2] Linking C executable cmTC_c3780.exe
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_61024"
-[1/2] Building C object CMakeFiles/cmTC_61024.dir/CMakeCCompilerABI.c.obj
-[2/2] Linking C executable cmTC_61024.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_b30ac"
+[1/2] Building C object CMakeFiles/cmTC_b30ac.dir/CMakeCCompilerABI.c.obj
+[2/2] Linking C executable cmTC_b30ac.exe
 Using built-in specs.
 COLLECT_GCC=E:\msys2\mingw64\bin\cc.exe
 COLLECT_LTO_WRAPPER=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe
@@ -48,18 +48,18 @@ Thread model: posix
 gcc version 6.2.0 (Rev2, Built by MSYS2 project) 
 COMPILER_PATH=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/;E:/msys2/mingw64/bin/../lib/gcc/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/bin/
 LIBRARY_PATH=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/;E:/msys2/mingw64/bin/../lib/gcc/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_61024.exe' '-mtune=generic' '-march=x86-64'
- E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccvwjWdf.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_61024.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_61024.dir/CMakeCCompilerABI.c.obj --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_61024.exe' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b30ac.exe' '-mtune=generic' '-march=x86-64'
+ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccVck2ON.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_b30ac.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_b30ac.dir/CMakeCCompilerABI.c.obj --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b30ac.exe' '-mtune=generic' '-march=x86-64'
 
 
 Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_61024"]
-  ignore line: [[1/2] Building C object CMakeFiles/cmTC_61024.dir/CMakeCCompilerABI.c.obj]
-  ignore line: [[2/2] Linking C executable cmTC_61024.exe]
+  ignore line: [Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_b30ac"]
+  ignore line: [[1/2] Building C object CMakeFiles/cmTC_b30ac.dir/CMakeCCompilerABI.c.obj]
+  ignore line: [[2/2] Linking C executable cmTC_b30ac.exe]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=E:\msys2\mingw64\bin\cc.exe]
   ignore line: [COLLECT_LTO_WRAPPER=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe]
@@ -76,13 +76,13 @@ Parsed C implicit link information from above output:
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib/]
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/]
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_61024.exe' '-mtune=generic' '-march=x86-64']
-  link line: [ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccvwjWdf.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_61024.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_61024.dir/CMakeCCompilerABI.c.obj --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_b30ac.exe' '-mtune=generic' '-march=x86-64']
+  link line: [ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccVck2ON.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_eh -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_b30ac.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_b30ac.dir/CMakeCCompilerABI.c.obj --major-image-version 0 --minor-image-version 0 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc -lgcc_eh -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o]
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=E:\msys2\tmp\ccvwjWdf.res] ==> ignore
+    arg [-plugin-opt=-fresolution=E:\msys2\tmp\ccVck2ON.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_eh] ==> ignore
@@ -104,7 +104,7 @@ Parsed C implicit link information from above output:
     arg [i386pep] ==> ignore
     arg [-Bdynamic] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_61024.exe] ==> ignore
+    arg [cmTC_b30ac.exe] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o] ==> ignore
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0]
@@ -113,7 +113,7 @@ Parsed C implicit link information from above output:
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib]
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib]
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../..] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../..]
-    arg [CMakeFiles/cmTC_61024.dir/CMakeCCompilerABI.c.obj] ==> ignore
+    arg [CMakeFiles/cmTC_b30ac.dir/CMakeCCompilerABI.c.obj] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
     arg [--minor-image-version] ==> ignore
@@ -157,9 +157,9 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_32d56"
-[1/2] Building C object CMakeFiles/cmTC_32d56.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_32d56.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_dfbb5"
+[1/2] Building C object CMakeFiles/cmTC_dfbb5.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_dfbb5.exe
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -171,9 +171,9 @@ Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_32d56"
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_86b18"
-[1/2] Building C object CMakeFiles/cmTC_86b18.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_86b18.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_136ea"
+[1/2] Building C object CMakeFiles/cmTC_136ea.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_136ea.exe
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -185,9 +185,9 @@ Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_86b18"
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_e8634"
-[1/2] Building C object CMakeFiles/cmTC_e8634.dir/feature_tests.c.obj
-[2/2] Linking C executable cmTC_e8634.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_da582"
+[1/2] Building C object CMakeFiles/cmTC_da582.dir/feature_tests.c.obj
+[2/2] Linking C executable cmTC_da582.exe
 
 
     Feature record: C_FEATURE:1c_function_prototypes
@@ -197,17 +197,17 @@ Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_e8634"
 Determining if the CXX compiler works passed with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_5a482"
-[1/2] Building CXX object CMakeFiles/cmTC_5a482.dir/testCXXCompiler.cxx.obj
-[2/2] Linking CXX executable cmTC_5a482.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_78825"
+[1/2] Building CXX object CMakeFiles/cmTC_78825.dir/testCXXCompiler.cxx.obj
+[2/2] Linking CXX executable cmTC_78825.exe
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_c6e3a"
-[1/2] Building CXX object CMakeFiles/cmTC_c6e3a.dir/CMakeCXXCompilerABI.cpp.obj
-[2/2] Linking CXX executable cmTC_c6e3a.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_0de71"
+[1/2] Building CXX object CMakeFiles/cmTC_0de71.dir/CMakeCXXCompilerABI.cpp.obj
+[2/2] Linking CXX executable cmTC_0de71.exe
 Using built-in specs.
 COLLECT_GCC=E:\msys2\mingw64\bin\c++.exe
 COLLECT_LTO_WRAPPER=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe
@@ -217,18 +217,18 @@ Thread model: posix
 gcc version 6.2.0 (Rev2, Built by MSYS2 project) 
 COMPILER_PATH=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/;E:/msys2/mingw64/bin/../lib/gcc/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/bin/
 LIBRARY_PATH=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/;E:/msys2/mingw64/bin/../lib/gcc/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/;E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c6e3a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccCRlpas.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_c6e3a.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_c6e3a.dir/CMakeCXXCompilerABI.cpp.obj --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c6e3a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0de71.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccnN2G2Y.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_0de71.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_0de71.dir/CMakeCXXCompilerABI.cpp.obj --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o
+COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0de71.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 
 
 Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld\.exe|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_c6e3a"]
-  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_c6e3a.dir/CMakeCXXCompilerABI.cpp.obj]
-  ignore line: [[2/2] Linking CXX executable cmTC_c6e3a.exe]
+  ignore line: [Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_0de71"]
+  ignore line: [[1/2] Building CXX object CMakeFiles/cmTC_0de71.dir/CMakeCXXCompilerABI.cpp.obj]
+  ignore line: [[2/2] Linking CXX executable cmTC_0de71.exe]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=E:\msys2\mingw64\bin\c++.exe]
   ignore line: [COLLECT_LTO_WRAPPER=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe]
@@ -245,13 +245,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib/]
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/]
   ignore line: [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_c6e3a.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccCRlpas.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_c6e3a.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_c6e3a.dir/CMakeCXXCompilerABI.cpp.obj --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_0de71.exe' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe -plugin E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll -plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe -plugin-opt=-fresolution=E:\msys2\tmp\ccnN2G2Y.res -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -plugin-opt=-pass-through=-lpthread -plugin-opt=-pass-through=-ladvapi32 -plugin-opt=-pass-through=-lshell32 -plugin-opt=-pass-through=-luser32 -plugin-opt=-pass-through=-lkernel32 -plugin-opt=-pass-through=-lmingw32 -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lmoldname -plugin-opt=-pass-through=-lmingwex -plugin-opt=-pass-through=-lmsvcrt -m i386pep -Bdynamic -o cmTC_0de71.exe E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0 -LE:/msys2/mingw64/bin/../lib/gcc -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib -LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../.. CMakeFiles/cmTC_0de71.dir/CMakeCXXCompilerABI.cpp.obj --major-image-version 0 --minor-image-version 0 -lstdc++ -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt -lpthread -ladvapi32 -lshell32 -luser32 -lkernel32 -lmingw32 -lgcc_s --undefined=___deregister_frame_info --undefined=___register_frame_info -lgcc -lmoldname -lmingwex -lmsvcrt E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/default-manifest.o E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtend.o]
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/collect2.exe] ==> ignore
     arg [-plugin] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/liblto_plugin-0.dll] ==> ignore
     arg [-plugin-opt=E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/lto-wrapper.exe] ==> ignore
-    arg [-plugin-opt=-fresolution=E:\msys2\tmp\ccCRlpas.res] ==> ignore
+    arg [-plugin-opt=-fresolution=E:\msys2\tmp\ccnN2G2Y.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lmingw32] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
@@ -273,7 +273,7 @@ Parsed CXX implicit link information from above output:
     arg [i386pep] ==> ignore
     arg [-Bdynamic] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_c6e3a.exe] ==> ignore
+    arg [cmTC_0de71.exe] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib/../lib/crt2.o] ==> ignore
     arg [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/crtbegin.o] ==> ignore
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0]
@@ -282,7 +282,7 @@ Parsed CXX implicit link information from above output:
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../lib]
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../../../x86_64-w64-mingw32/lib]
     arg [-LE:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../..] ==> dir [E:/msys2/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/6.2.0/../../..]
-    arg [CMakeFiles/cmTC_c6e3a.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
+    arg [CMakeFiles/cmTC_0de71.dir/CMakeCXXCompilerABI.cpp.obj] ==> ignore
     arg [--major-image-version] ==> ignore
     arg [0] ==> ignore
     arg [--minor-image-version] ==> ignore
@@ -331,9 +331,9 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_8520a"
-[1/2] Building CXX object CMakeFiles/cmTC_8520a.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_8520a.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_dd151"
+[1/2] Building CXX object CMakeFiles/cmTC_dd151.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_dd151.exe
 
 
     Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
@@ -398,9 +398,9 @@ Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_8520a"
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_afd6a"
-[1/2] Building CXX object CMakeFiles/cmTC_afd6a.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_afd6a.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_cb05a"
+[1/2] Building CXX object CMakeFiles/cmTC_cb05a.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_cb05a.exe
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
@@ -465,9 +465,9 @@ Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_afd6a"
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: D:/GitHub/spie-glasses/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_eb390"
-[1/2] Building CXX object CMakeFiles/cmTC_eb390.dir/feature_tests.cxx.obj
-[2/2] Linking CXX executable cmTC_eb390.exe
+Run Build Command:"E:/msys2/mingw64/bin/ninja.exe" "cmTC_c46e2"
+[1/2] Building CXX object CMakeFiles/cmTC_c46e2.dir/feature_tests.cxx.obj
+[2/2] Linking CXX executable cmTC_c46e2.exe
 
 
     Feature record: CXX_FEATURE:0cxx_aggregate_default_initializers
