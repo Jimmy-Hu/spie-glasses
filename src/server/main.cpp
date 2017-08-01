@@ -47,7 +47,8 @@ int main(int argc, char* argv[])
         std::string str;
         api::command_parser cp;
         bool continued = false;
-        while (true) {
+        while (true) 
+		{
             if (!std::getline(std::cin,str))
                 break;
             if (str == ":exit") {

@@ -186,7 +186,4 @@ namespace api {
 		}
 		return {};
 	}
-	
-	
-
 } // namespace api
