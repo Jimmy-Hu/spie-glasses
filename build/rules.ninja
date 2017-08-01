@@ -118,7 +118,7 @@ rule CXX_EXECUTABLE_LINKER__hint-client
 # Rule for re-running cmake.
 
 rule RERUN_CMAKE
-  command = E:\msys2\mingw64\bin\cmake.exe -HE:\msys2\home\jimmy\proj\spie-glasses -BE:\msys2\home\jimmy\proj\spie-glasses\build
+  command = E:\msys2\mingw64\bin\cmake.exe -HD:\GitHub\spie-glasses -BD:\GitHub\spie-glasses\build
   description = Re-running CMake...
   generator = 1
 

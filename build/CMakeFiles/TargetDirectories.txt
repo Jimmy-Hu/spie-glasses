@@ -1,7 +1,7 @@
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/rebuild_cache.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/edit_cache.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/api.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/image-client.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/audio-client.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/server.dir
-E:/msys2/home/jimmy/proj/spie-glasses/build/CMakeFiles/hint-client.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/rebuild_cache.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/edit_cache.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/api.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/image-client.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/audio-client.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/server.dir
+D:/GitHub/spie-glasses/build/CMakeFiles/hint-client.dir

@@ -1,8 +1,8 @@
-# Install script for directory: E:/msys2/home/jimmy/proj/spie-glasses
+# Install script for directory: D:/GitHub/spie-glasses
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "E:/msys2/home/jimmy/proj/spie-glasses/build/install")
+  set(CMAKE_INSTALL_PREFIX "D:/GitHub/spie-glasses/build/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -35,5 +35,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/msys2/home/jimmy/proj/spie-glasses/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/GitHub/spie-glasses/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
