@@ -82,7 +82,7 @@ namespace api {
 		return opened;
 	}
 
-	std::vector<std::string> Detect::detect_user(cv::Mat& image)
+	std::vector<std::string> Detect::detect_user(cv::Mat& image)				//	detect_user
 	{
 		using namespace std;
 		using namespace dlib;

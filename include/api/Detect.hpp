@@ -12,7 +12,8 @@
 #include "opencv2/highgui/highgui.hpp"
 
 // ----------------------------------------------------------------------------------------
-namespace api {
+namespace api 
+{
     
 	// The next bit of code defines a ResNet network.  It's basically copied
 	// and pasted from the dnn_imagenet_ex.cpp example, except we replaced the loss
