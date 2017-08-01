@@ -87,10 +87,9 @@ namespace api {
 		using namespace std;
 		using namespace dlib;
 		std::vector<cv::Mat> tmp;
-		cv::Mat image_temp;
 		try
 		{
-
+			cv::Mat image_temp;
 			cv::cvtColor(image, image_temp, CV_BGR2HSV);
 			cv::split(image_temp,tmp);
 			cv::medianBlur(tmp[2], tmp[2], 3);
