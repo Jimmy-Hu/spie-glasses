@@ -2,7 +2,7 @@
 #include "image_sink.hpp"														//	include "image_sink.hpp" header file, 引入"image_sink.hpp"標頭檔
 #include "server.hpp"															//	include "server.hpp" header file, 引入"server.hpp"標頭檔
 #include "session.hpp"															//	include "session.hpp" header file, 引入"session.hpp"標頭檔
-#include "session_manager.hpp"
+#include "session_manager.hpp"													//	include "session_manager.hpp" header file, 引入"session_manager.hpp"標頭檔
 // internal api
 #include <api/Detect.hpp>
 // external api
