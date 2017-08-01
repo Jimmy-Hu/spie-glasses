@@ -1,6 +1,7 @@
-#include "image_sink.hpp"
-#include "server.hpp"
-#include "session.hpp"
+//-----include header files, 引入標頭檔-----
+#include "image_sink.hpp"														//	include "image_sink.hpp" header file, 引入"image_sink.hpp"標頭檔
+#include "server.hpp"															//	include "server.hpp" header file, 引入"server.hpp"標頭檔
+#include "session.hpp"															//	include "session.hpp" header file, 引入"session.hpp"標頭檔
 #include "session_manager.hpp"
 // internal api
 #include <api/Detect.hpp>
@@ -22,7 +23,8 @@
 #include <algorithm>
 
 int main(int argc, char* argv[])
-{    try
+{
+	try
     {
         if (argc < 2)
         {
