@@ -1,37 +1,38 @@
 //-----include header files, 引入標頭檔-----
 #include <api/Detect.hpp>														//	include <api/Detect.hpp> header file, 引入<api/Detect.hpp>標頭檔
-#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/imgproc/imgproc.hpp"											//	include "opencv2/imgproc/imgproc.hpp" header file, 引入"opencv2/imgproc/imgproc.hpp"標頭檔
 
-    void MyGammaCorrection(cv::Mat& src, cv::Mat& dst, float fGamma)  
-    {  
-        using namespace cv;
-        CV_Assert(src.data);  
-      
-        // accept only char type matrices  
-        CV_Assert(src.depth() != sizeof(uchar));  
-      
-        // build look up table  
-        unsigned char lut[256];  
-        for( int i = 0; i < 256; i++ )  
-        {  
-            lut[i] = saturate_cast<uchar>(pow((float)(i/255.0), fGamma) * 255.0f);  
-        }  
-      
-        dst = src.clone();  
-        const int channels = dst.channels();  
-        switch(channels)  
-        {  
-            case 1:  
-                {  
-      
-                    MatIterator_<uchar> it, end;  
-                    for( it = dst.begin<uchar>(), end = dst.end<uchar>(); it != end; it++ )  
-                        //*it = pow((float)(((*it))/255.0), fGamma) * 255.0;  
-                        *it = lut[(*it)];  
-      
-                    break;  
-                }  
-            case 3:   
+void MyGammaCorrection(cv::Mat& src, cv::Mat& dst, float fGamma)
+{
+    using namespace cv;
+    CV_Assert(src.data);
+    
+    // accept only char type matrices
+    CV_Assert(src.depth() != sizeof(uchar));  
+    
+    // build look up table
+    unsigned char lut[256];
+    for( int i = 0; i < 256; i++ )
+    {
+        lut[i] = saturate_cast<uchar>(pow((float)(i/255.0), fGamma) * 255.0f);
+    }
+    
+    dst = src.clone();
+    const int channels = dst.channels();
+    switch(channels)
+    {
+        case 1:
+        {
+    
+            MatIterator_<uchar> it, end;
+            for( it = dst.begin<uchar>(), end = dst.end<uchar>(); it != end; it++ )
+			{
+				//*it = pow((float)(((*it))/255.0), fGamma) * 255.0;
+				*it = lut[(*it)];
+			}
+            break;
+        }
+        case 3:   
                 {  
       
                     MatIterator_<Vec3b> it, end;  
