@@ -121,7 +121,6 @@ namespace api {
 					cv::Point(face_rect.right(),face_rect.bottom()),
 					cv::Scalar(255,0,0));
 					
-					
 			}
 
 			std::vector<matrix<float,0,1>> face_descriptors = net(faces);
@@ -177,7 +176,7 @@ namespace api {
 			}
 			// if(faces.size() != 0)
 			//           std::cerr << "----------------------------------------" << std::endl;
-		person.push_back("\n");
+			person.push_back("\n");
 			return person;
 		}
 		catch (std::exception& e)
