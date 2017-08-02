@@ -23,7 +23,7 @@
 #include <algorithm>															//	引入<algorithm>標頭檔
 
 int main(int argc, char* argv[])												//	main主程式
-{
+{																				//	進入main主程式
 	try
     {
         if (argc < 2)
@@ -75,4 +75,4 @@ int main(int argc, char* argv[])												//	main主程式
         std::cerr << "Exception: " << e.what() << "\n";
     }
     return 0;
-}
+}																				//	結束main主程式
