@@ -22,7 +22,7 @@
 #include <thread>																//	引入<thread>標頭檔
 #include <algorithm>															//	引入<algorithm>標頭檔
 
-int main(int argc, char* argv[])
+int main(int argc, char* argv[])												//	main主程式
 {
 	try
     {
