@@ -185,6 +185,7 @@ sweet_target_add(server       CONFIGS ${packages} internal-api)
 sweet_target_add(hint-client  CONFIGS ${packages} internal-api)
 sweet_target_add(image-client CONFIGS ${packages} internal-api)
 sweet_target_add(audio-client CONFIGS ${packages} internal-api)
+# ***複製二進位資料檔***
 configure_file(src/server/database_decr.dat "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/database_decr.dat" COPYONLY)
 configure_file(src/server/database_name.dat "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/database_name.dat" COPYONLY)
 configure_file(src/server/shape_predictor_68_face_landmarks.dat "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/shape_predictor_68_face_landmarks.dat" COPYONLY)
