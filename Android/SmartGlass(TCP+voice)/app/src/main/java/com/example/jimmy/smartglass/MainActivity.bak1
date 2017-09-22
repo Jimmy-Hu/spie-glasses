@@ -1,0 +1,132 @@
+//  SmartGlass智慧眼鏡APP
+//  參考資料：
+//  http://kuosun.blogspot.tw/2013/12/androidosnetworkonmainthreadexception.html
+//  http://stackoverflow.com/questions/12726377/java-printwriter-not-sending-byte-array
+
+package com.example.jimmy.smartglass;
+
+import android.app.Activity;															//	引入android.app.Activity函式庫
+import android.os.AsyncTask;															//	引入android.os.AsyncTask函式庫
+import android.os.Bundle;																//	引入android.os.Bundle函式庫
+import android.view.View;																//	引入android.view.View函式庫
+import android.widget.Button;															//	引入android.widget.Button函式庫
+import android.widget.EditText;															//	引入android.widget.EditText函式庫
+import android.widget.TextView;															//	引入android.widget.TextView函式庫
+import android.view.View.OnClickListener;												//	引入android.view.View.OnClickListener函式庫
+import android.support.v7.app.AppCompatActivity;										//	引入android.support.v7.app.AppCompatActivity函式庫
+import android.os.Bundle;																//	引入android.os.Bundle函式庫
+
+import java.io.BufferedReader;															//	引入java.io.BufferedReader函式庫
+import java.io.BufferedWriter;															//	引入java.io.BufferedWriter函式庫
+import java.io.DataOutputStream;														//	引入java.io.DataOutputStream函式庫
+import java.io.IOException;																//	引入java.io.IOException函式庫
+import java.io.InputStreamReader;														//	引入java.io.InputStreamReader函式庫
+import java.io.OutputStreamWriter;														//	引入java.io.OutputStreamWriter函式庫
+import java.io.PrintWriter;																//	引入java.io.PrintWriter函式庫
+import java.net.InetAddress;															//	引入java.net.InetAddress函式庫
+import java.net.InetSocketAddress;														//	引入java.net.InetSocketAddress函式庫
+import java.net.Socket;																	//	引入java.net.Socket函式庫
+import java.net.SocketAddress;															//	引入java.net.SocketAddress函式庫
+import java.net.SocketException;														//	引入java.net.SocketException函式庫
+import java.net.UnknownHostException;													//	引入java.net.UnknownHostException函式庫
+import java.util.ArrayList;																//	引入java.util.ArrayList函式庫
+import java.util.List;																	//	引入java.util.List函式庫
+
+import android.util.Log;																//  引入android.util.Log函式庫
+
+public class MainActivity extends AppCompatActivity										//	MainActivity類別
+{																						//	進入MainActivity類別
+	private EditText txtMessage;														//	宣告txtMessage為EditText物件
+	private Button sendBtn;																//	宣告sendBtn為傳送資料至server的Button物件
+	public TcpClient mTcpClient;														//	宣告mTcpClient為TcpClient
+	private final static char[] hexArray = "0123456789ABCDEF".toCharArray();
+
+	@Override
+	public void onCreate(Bundle savedInstanceState){
+
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_main);
+
+		txtMessage = (EditText) findViewById(R.id.txt_message);
+		sendBtn = (Button) findViewById(R.id.send_btn);
+		sendBtn.setOnClickListener(new Button.OnClickListener(){
+			public void onClick(View v){
+				if (v == sendBtn){
+					if (txtMessage != null)
+					{
+				 /* 這邊要用 Thread 是因為 Android 改版之後會對在主程式裡跑網路連接的程式碼做 Exception 的意外排除動作
+				  * 因此要把網路連線使用多執行緒的方式去運行，才不會被當成例外錯誤拋出
+				  */
+						Thread thread = new Thread(mutiThread);
+						thread.start();
+					}
+				}
+			}
+		});
+	}
+	private Runnable mutiThread = new Runnable(){
+		public void run(){
+			// 運行網路連線的程式
+			new ConnectTask().execute("");
+			if (mTcpClient != null)
+			{
+				//String msg = txtMessage.getEditableText().toString();					   //  取得要傳送的字串
+				//mTcpClient.sendMessage(msg);
+
+				//byte[] BinaryData = new byte[]{(byte)0x65,0x65,0x21,0x22,0x12};		   //
+				byte[] BinaryData = hexStringToByteArray("93cc03cf000000000000000192a56c6f67696e92ac617564696f2d636c69656e7401");
+
+				mTcpClient.sendBinary(BinaryData);
+			}
+		}
+	};
+
+	public class ConnectTask extends AsyncTask<String, String, TcpClient> {
+
+		@Override
+		protected TcpClient doInBackground(String... message) {
+
+			//we create a TCPClient object
+			mTcpClient = new TcpClient(new TcpClient.OnMessageReceived() {
+				@Override
+				//here the messageReceived method is implemented
+				public void messageReceived(String message) {
+					//this method calls the onProgressUpdate
+					publishProgress(message);
+				}
+			});
+			mTcpClient.run();
+
+			return null;
+		}
+
+		@Override
+		protected void onProgressUpdate(String... values) {
+			super.onProgressUpdate(values);
+			//response received from server
+			Log.d("test", "response " + values[0]);
+			//process server response here....
+
+		}
+	}
+
+	public static String bytesToHex(byte[] bytes) {
+		char[] hexChars = new char[bytes.length * 2];
+		for ( int j = 0; j < bytes.length; j++ ) {
+			int v = bytes[j] & 0xFF;
+			hexChars[j * 2] = hexArray[v >>> 4];
+			hexChars[j * 2 + 1] = hexArray[v & 0x0F];
+		}
+		return new String(hexChars);
+	}
+
+	public static byte[] hexStringToByteArray(String s) {
+		int len = s.length();
+		byte[] data = new byte[len / 2];
+		for (int i = 0; i < len; i += 2) {
+			data[i / 2] = (byte) ((Character.digit(s.charAt(i), 16) << 4)
+					+ Character.digit(s.charAt(i+1), 16));
+		}
+		return data;
+	}
+}
