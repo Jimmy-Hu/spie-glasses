@@ -113,8 +113,7 @@ namespace api {
 				auto shape = sp(img, face_rect);
 				matrix<rgb_pixel> face_chip;
 				extract_image_chip(img, get_face_chip_details(shape,150,0.25), face_chip);
-				faces.push_back(move(face_chip));
-				//draw_rectangle(img, face, rgb_pixel(255,0,0), 1);         
+				faces.push_back(move(face_chip));    
 				cv::rectangle(
 					image,
 					cv::Point(face_rect.left(),face_rect.top()),

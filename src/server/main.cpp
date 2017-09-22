@@ -24,8 +24,8 @@
 
 int main(int argc, char* argv[])												//	main主程式
 {																				//	進入main主程式
-	try
-    {
+	try																			//	try敘述
+    {																			//	進入try敘述
         if (argc < 2)
         {
             std::cerr << "Usage: server <port>\n";
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])												//	main主程式
         std::cerr << "[info] closing server" << std::endl;
         image_sink().close();
         t.join();
-    }
+    }																			//	結束try敘述
     catch (std::exception& e)
     {
         std::cerr << "Exception: " << e.what() << "\n";
