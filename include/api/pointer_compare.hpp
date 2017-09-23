@@ -1,3 +1,6 @@
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 #ifndef API_POINTER_COMPARE_HPP_INCLUDED
 #define API_POINTER_COMPARE_HPP_INCLUDED
 namespace api {

@@ -1,3 +1,6 @@
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 #ifndef API_CV_MSGPACK_HPP_INCLUDED
 #define API_CV_MSGPACK_HPP_INCLUDED
 #include <opencv2/opencv.hpp>

@@ -1,3 +1,6 @@
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 #ifndef API_LOGGING_HPP_INCLUDED
 #define API_LOGGING_HPP_INCLUDED
 #include <iostream>

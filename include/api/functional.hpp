@@ -1,3 +1,6 @@
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 
 #ifndef API_FUNCTIONAL_HPP_INCLUDED
 #define API_FUNCTIONAL_HPP_INCLUDED

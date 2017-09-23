@@ -1,4 +1,6 @@
-
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 #include <api/dispatcher.hpp>
 
 namespace api {

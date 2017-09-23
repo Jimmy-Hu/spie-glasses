@@ -124,12 +124,6 @@ Post pack ，是一推送資訊之封包，不等待回應。pack_type 值為 3�
 
 ** 系統程式
 
-- Server :: 智慧眼鏡伺服器。
-
-- Image-Client :: 影像截取之眼鏡客戶端
-
-- Voice-Client (原 Audio-Client) :: 手機 App 之發聲客戶端
-
 *** Server 
 
 接收客戶端的連接和登錄，接收image-client來的影像，在人臉影像處理及識別完成之後，將在圖像中的人名傳送到 voice-client。

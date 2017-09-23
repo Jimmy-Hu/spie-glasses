@@ -1,3 +1,6 @@
+//
+// Copyright (C) 2017 CheinYu Lin. All rights reserved.
+//
 #ifndef API_PARSER_HPP_INCLUDED
 #define API_PARSER_HPP_INCLUDED
 #include <iostream>
