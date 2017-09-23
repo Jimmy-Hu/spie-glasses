@@ -1,0 +1,165 @@
+#+TITLE: 智慧眼鏡PC端
+#+AUTHOR: ChienYu Lin (林建宇)
+
+* 系統架構
+
+** 執行的平台
+
+本專案可以跨平台編譯及運行。目前以在 Windows (Windows 7, Windows 10) 及 Linux (Ubuntu, Archlinux) 的平台上皆能
+成功編譯和執行。
+
+為了實現跨平台編譯的目地，本專案踩用 CMake 的作為專案程式的專案架構描述以及建置工具，透過 CMake ，可以在不同的平台之下生成
+適用於對應於不同的平台的建置工具的相應的建置用專案檔，如在Windows平台下可以生成Visual Studio的專案，在類Unix平台下可以
+生成 Makefile 專案。
+
+
+因此，就算是用不同的編譯環境，也能夠建置和部署。
+
+** 使用的函式庫
+
+除此之外，本專案所採用的函式庫也是跨平台的，不論是在何種不同的平台，都只需調用同一種的 API 。
+
+本專案使用以下的函式庫。
+
+- Boost.Asio :: 網路通訊函式庫
+- Fmt :: 字串格式化函式庫
+- Msgpack :: 物件序列化(serialize)及解序列化(deserialize)函式庫
+- OpenCV :: 影像處理函式庫
+- Dlib :: 物件、人臉影像處理及識別函式庫
+- ZLIB :: 壓縮函式庫
+
+** 通訊協定
+
+*** 傳輸層通訊協定
+
+使用 TCP/IP 。
+
+*** 應用層通訊協定
+ 
+本專案使用自定義的通訊協定。發送的物件以 Msgpack 包裝。以一個 Msgpack 物件為單位，稱為封包。
+
+通用格式如下：
+
+#+BEGIN_SRC json
+  [pack_type, pack_id, object]
+#+END_SRC
+
+- pack_type :: 此封包的型態，以數字型式儲存
+  - 1 :: 為 Request pack ，是一發送要求的封包，並等待回應
+  - 2 :: 為 Response pack ，即回應相對應 (指定 packid) 之要求 (Request pack) 的封包
+  - 3 :: 為 Post pack ，是一推送資訊之封包，不等待回應。
+- pack_id :: 此封包的標識號，
+- object :: 封包的附帶物件
+
+**** Request
+
+Request pack ，是發送要求用的封包，並等待回應。pack_type 值為 1。
+
+格式如下：
+
+#+BEGIN_SRC json
+  [1, pack_id, [cmd, arg_object]]
+#+END_SRC
+
+
+**** Response
+
+Response pack ，即回應相對應 (指定 packid) 之要求 (Request pack) 的封包 Ppack ，pack_type 值為 2。
+
+格式如下：
+
+- pack_id :: 回應之對應請求封包的標識號，
+- cmd :: 請求之命令。
+- arg_object :: 請求之命令參數物件。
+
+#+BEGIN_SRC json
+  [2, pack_id, result_object]
+#+END_SRC
+
+- pack_id :: 回應之對應請求封包的標識號，
+- result_object :: 回應之對應請求封包的返回物件。
+
+**** Post
+
+Post pack ，是一推送資訊之封包，不等待回應。pack_type 值為 3。
+
+格式如下：
+
+#+BEGIN_SRC json
+  [3, pack_id, [cmd, arg_object]]
+#+END_SRC
+
+- pack_id :: 封包的標識號，
+- cmd :: 推送之命令。
+- arg_object :: 推送之附帶參數物件。
+
+
+** 通訊之程式物件 。
+
+[[./msgio.png]]
+
+- Writer ::
+
+  將物件轉換成二進制流，寫入至 Socket。
+
+- Reader ::
+
+  由 Socket 讀出二進制流，轉換成 msgpack 物件。
+
+- Queued Writer ::
+
+  緩衝待寫入的 Msgpack 物件，依序傳送至 Writer。
+
+- Dispatcher ::
+
+  依據封包的型態，分別轉送到 Responser 抑或是 Responser。
+
+- Requester ::
+
+  代使用者發送要求，及將回應送回使用者註冊之回調函式物件。
+
+- Responser ::
+
+  處理使用者發送之要求，並回應之。
+
+** 系統程式
+
+- Server :: 智慧眼鏡伺服器。
+
+- Image-Client :: 影像截取之眼鏡客戶端
+
+- Voice-Client (原 Audio-Client) :: 手機 App 之發聲客戶端
+
+*** Server 
+
+接收客戶端的連接和登錄，接收image-client來的影像，在人臉影像處理及識別完成之後，將在圖像中的人名傳送到 voice-client。
+
+**** 接受之命令
+
+- login (post) :: 接收客戶端的連接和登錄。
+- put_image (post) :: 接收image-client來的影像
+
+**** 發送之命令
+
+- people_names (post) :: 把圖像中的人名 post 至 Voice-Client
+
+*** Image-Client
+
+將眼鏡收到的影像傳送到 server。
+
+**** 發送之命令
+- login (post) :: 登錄伺服器，表明自身的身份為 image-client 。，
+- put_image (post) :: 將眼鏡收到的影像傳送到 server。
+
+*** Voice-Client
+
+將由 server 接收的人名列表轉換為語音發音。
+
+**** 發送之命令
+
+- login (post) :: 登錄伺服器，表明自身的身份為 voice-client 。，
+
+**** 接受之命令
+
+- people_names (post) :: post 至 Voice-Client
+
