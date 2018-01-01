@@ -81,6 +81,8 @@ public:
             });
     }
 private:
+    /*    get_image function
+     */
     cv::Mat get_image() {
         cv::Mat frame;
         m_cap.read(frame);
