@@ -12,7 +12,7 @@ int main(int argc, char* argv[])
 		cv::VideoCapture cap;
         if (argc == 4)
         {
-            cap.open(argv[3]);
+            cap.open(argv[3] - (char)'0');
         }
         else
         {
