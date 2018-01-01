@@ -4,13 +4,20 @@ int main(int argc, char* argv[])
 {
     try
     {
-        if (argc != 3)
+        if (argc < 3)
         {
-            std::cerr << "Usage: client <host> <port>\n";
+            std::cerr << "Usage: client <host> <port> [camera index]\n";
             return 1;
         }
-        cv::VideoCapture cap;
-        cap.open(0);
+		cv::VideoCapture cap;
+        if (argc == 4)
+        {
+            cap.open(argv[3]);
+        }
+        else
+        {
+            cap.open(0);
+        }
         if (!cap.isOpened()) {
             std::cerr << "[info] camera not found." << std::endl;
             return 0;

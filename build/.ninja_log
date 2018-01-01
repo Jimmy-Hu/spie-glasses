@@ -1,13 +1,13 @@
 # ninja log v5
-2	473	0	CMakeFiles/api.dir/src/api/api.cpp.obj	9c92b19f9ad5daac
-19	3732	0	CMakeFiles/api.dir/src/api/dispatcher.cpp.obj	8fd33c12bc624418
-10	33515	0	CMakeFiles/api.dir/src/api/Detect.cpp.obj	fa1bddb7e8d27a67
-33519	33824	0	export/lib/libapi.a	d6bd27677530d5c1
-33847	41842	0	CMakeFiles/audio-client.dir/src/audio-client/main.cpp.obj	d9e7187c433899c9
-33824	41901	0	CMakeFiles/hint-client.dir/src/hint-client/main.cpp.obj	6a323c9529030b8a
-33831	42149	0	CMakeFiles/image-client.dir/src/image-client/main.cpp.obj	3730c7f49d8db5d0
-41843	42293	0	export/bin/audio-client.exe	767b569c2c7c3228
-41902	42339	0	export/bin/hint-client.exe	279bd7de920bdd00
-42149	42556	0	export/bin/image-client.exe	8ecd23b7caed872c
-33838	52484	0	CMakeFiles/server.dir/src/server/main.cpp.obj	a1b18a56bd7384f1
-52485	53039	0	export/bin/server.exe	10bd68814202654
+3	162	0	CMakeFiles/api.dir/src/api/api.cpp.obj	9c92b19f9ad5daac
+13	44225	0	CMakeFiles/api.dir/src/api/dispatcher.cpp.obj	8fd33c12bc624418
+20	74369	0	CMakeFiles/api.dir/src/api/Detect.cpp.obj	fa1bddb7e8d27a67
+74376	74924	0	export/lib/libapi.a	d6bd27677530d5c1
+74931	84349	0	CMakeFiles/audio-client.dir/src/audio-client/main.cpp.obj	d9e7187c433899c9
+74959	84471	0	CMakeFiles/hint-client.dir/src/hint-client/main.cpp.obj	6a323c9529030b8a
+74924	84619	0	CMakeFiles/image-client.dir/src/image-client/main.cpp.obj	3730c7f49d8db5d0
+84349	85635	0	export/bin/audio-client.exe	767b569c2c7c3228
+84471	85642	0	export/bin/hint-client.exe	279bd7de920bdd00
+84620	85642	0	export/bin/image-client.exe	8ecd23b7caed872c
+74942	95600	0	CMakeFiles/server.dir/src/server/main.cpp.obj	a1b18a56bd7384f1
+95602	96517	0	export/bin/server.exe	10bd68814202654
