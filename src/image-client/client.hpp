@@ -38,6 +38,8 @@ class client
 {
 public:
     using command_type = std::vector<std::string>;
+    /*    client constructor 
+     */
     client(boost::asio::io_service& io_service,
            tcp::resolver::iterator endpoint_iterator,
            cv::VideoCapture & cap
