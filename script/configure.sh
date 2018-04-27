@@ -1,5 +1,5 @@
-#!/bin/sh
-this_dir="$(dirname $(readlink -f $0))"
+#!/bin/bash
+this_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source_dir="${this_dir}/.."
 binary_dir="${this_dir}/../build"
 install_dir="${this_dir}/../stage"
@@ -15,11 +15,11 @@ then
           "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" \
           "-DCMAKE_PREFIX_PATH=${MSYSTEM_PREFIX}/local" \
           "-DCMAKE_INSTALL_PREFIX=${install_dir}" \
-          "$@" "${source_dir}"
+          -B"${binary_dir}" -H"${source_dir}" "$@"
 else
     cmake \
         "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON" \
         "-DCMAKE_INSTALL_PREFIX=${install_dir}" \
-        "$@" "${source_dir}"
+        -B"${binary_dir}" -H"${source_dir}" "$@"
 fi
 popd >/dev/null
