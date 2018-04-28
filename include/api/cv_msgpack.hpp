@@ -115,6 +115,7 @@ namespace msgpack {
                         }
                         return o;
                     }
+                    return o;
                 }
             };
             template <>
@@ -144,8 +145,9 @@ namespace msgpack {
                             strm.next_out  = reinterpret_cast<unsigned char*>(m.ptr());
                             strm.avail_out = m.rows * m.cols * m.elemSize();
                             ::inflate(&strm,Z_FINISH);
+                            ::inflateEnd(&strm);
                         }
-                        else if (mode == 2) {// gz compress mode
+                        else if (mode == 2) {//  compress mode
                             std::cerr << "lz4 compress mode " << std::endl;
                             m = cv::Mat(rows, cols, type);
                             std::size_t size = m.rows * m.cols * m.elemSize();

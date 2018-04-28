@@ -45,21 +45,25 @@ namespace api {
             {
                 *this = std::forward<decltype(o)&>(o);
                 mode = o.mode;
+                return *this;
             }
         compressed_mat & operator=(const compressed_mat && o)
             {
                 *this = std::forward<decltype(o)&>(o);
                 mode = o.mode;
+                return *this;
             }
         compressed_mat & operator=(compressed_mat & o)
             {
                 *this = std::forward<decltype(o)&>(o);
                 mode = o.mode;
+                return *this;
             }
         compressed_mat & operator=(compressed_mat && o)
             {
                 *this = std::forward<decltype(o)&>(o);
                 mode = o.mode;
+                return *this;
             }
     };
 } // namespace api
@@ -92,7 +96,7 @@ namespace msgpack {
                     o.pack(m.cols);
                     o.pack(m.type());
                     std::size_t size = m.rows * m.cols * m.elemSize();
-                    if (mode == 2)
+                    if (mode == 2) {
                         do {
                             o.pack(2); // lz4 compress mode
                             cv::Mat mm = is_continuous ? m : m.clone();
@@ -109,7 +113,7 @@ namespace msgpack {
                             o.pack_bin(bin_size);
                             o.pack_bin_body(dest, bin_size);
                         } while(false);
-                    else if (mode == 1)
+                    } else if (mode == 1) {
                         do {
                             ::z_stream strm;
                             strm.zalloc = Z_NULL;
@@ -169,7 +173,7 @@ namespace msgpack {
                             o.pack_bin(bin_size);
                             o.pack_bin_body(buffer.data(), bin_size);
                         } while (false);
-                    else if (mode == 0 || use_fallback) {
+                    } else if (mode == 0 || use_fallback) {
                         o.pack(0); // non compress mode
                         o.pack_bin(size);
                         if (is_continuous) {
@@ -182,6 +186,7 @@ namespace msgpack {
                         }
                         return o;
                     }
+                    return o;
                 }
             };
             template <>

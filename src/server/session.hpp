@@ -22,7 +22,7 @@
 // external api
 #include <msgpack.hpp>
 #include <boost/asio.hpp>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 // standard api
 #include <cstdlib>
 #include <deque>

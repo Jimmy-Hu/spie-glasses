@@ -12,7 +12,8 @@
 #  Json_DEFINITIONS - Compiler switches required for using Json
 
 
-find_path(Json_INCLUDES json.hpp nlohmann/json.hpp)
+# find_path(Json_INCLUDES NAMES json.hpp nlohmann/json.hpp)
+find_path(Json_INCLUDES nlohmann/json.hpp)
 # find_library(Json_LIBRARIES json)
 set(Json_LIBRARIES "")
 

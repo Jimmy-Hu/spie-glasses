@@ -18,7 +18,7 @@
 #include <boost/asio.hpp>
 #include <boost/system/error_code.hpp>
 #include <msgpack.hpp>
-#include <json.hpp>
+#include <nlohmann/json.hpp>
 // standard api
 #include <chrono>
 #include <cstdlib>
