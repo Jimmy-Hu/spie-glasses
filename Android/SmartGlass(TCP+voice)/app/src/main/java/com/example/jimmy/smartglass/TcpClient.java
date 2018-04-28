@@ -19,9 +19,9 @@ import java.net.Socket;																//	引入java.net.Socket函式庫
 public class TcpClient																//	TcpClient類別
 {																					//	進入TcpClient類別
 	//public static final String SERVER_IP = "140.124.73.201";						//	set server IP address, 設定server位址
-	public static final String SERVER_IP = "192.168.0.139";							//	set server IP address, 設定server位址
+	public static final String SERVER_IP = "192.168.1.4";							//	set server IP address, 設定server位址
 	//public static final int SERVER_PORT = 16388;									//	設定server連接埠
-	public static final int SERVER_PORT = 5000;										//	設定server連接埠
+	public static final int SERVER_PORT = 1111;										//	設定server連接埠
 	// message receive from the server
 	private String mServerMessage;
 	//  binary data receive from the server
