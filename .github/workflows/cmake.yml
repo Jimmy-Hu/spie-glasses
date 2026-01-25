@@ -51,13 +51,17 @@ jobs:
         brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas
 
     - name: Patch Source Code for CI
+      # Fix 1: 'get_io_service' error due to newer Boost version
+      # Fix 2: OpenCV 4.x compatibility
+      # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
-        # --- Fix 1: Boost.Asio io_context compatibility (macOS/Boost 1.90+) ---
+        # --- Fix 1: Boost.Asio io_context compatibility ---
         
         # A. Replace deprecated '.post()' calls with 'boost::asio::post(executor, ...)'
         # We target specific variables to ensure correctness
         
         # asio_msgpack.hpp: s.get_io_service().post(...) -> boost::asio::post(s.get_executor(), ...)
+        # Assumes 's' is a stream/socket with get_executor()
         sed -i.bak 's/s.get_io_service().post(/boost::asio::post(s.get_executor(), /g' include/api/asio_msgpack.hpp
         
         # session.hpp: m_socket.get_io_service().post(...) -> boost::asio::post(m_socket.get_executor(), ...)
@@ -66,11 +70,15 @@ jobs:
         # server.hpp: m_acceptor.get_io_service().post(...) -> boost::asio::post(m_acceptor.get_executor(), ...)
         sed -i.bak 's/m_acceptor.get_io_service().post(/boost::asio::post(m_acceptor.get_executor(), /g' src/server/server.hpp
         
-        # queued_writer.hpp: m_writer.get_io_service().post(...) -> boost::asio::post(m_writer.get_executor(), ...)
-        sed -i.bak 's/m_writer.get_io_service().post(/boost::asio::post(m_writer.get_executor(), /g' include/api/queued_writer.hpp
+        # queued_writer.hpp: m_writer.get_io_service().post(...) -> boost::asio::post(m_writer.get_io_service().get_executor(), ...)
+        # Note: m_writer is a wrapper (basic_msgpack_writer) and usually does NOT have get_executor().
+        # We must call get_io_service() first (which returns context), then get_executor() from that context.
+        # CRITICAL FIX: Ensure we use .get_io_service().get_executor() here.
+        sed -i.bak 's/m_writer.get_io_service().post(/boost::asio::post(m_writer.get_io_service().get_executor(), /g' include/api/queued_writer.hpp
 
         # B. Fix get_io_service() implementation in headers
-        # Note: Return types are handled by -Dio_service=io_context in CMakeLists.txt
+        # Note: Return types are handled by -Dio_service=io_context in CMakeLists.txt on macOS.
+        # This patch fixes the implementation to use get_executor().context() because socket.get_io_service() is gone.
         
         # basic_msgpack_writer.hpp
         sed -i.bak 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
@@ -82,7 +90,7 @@ jobs:
         sed -i.bak 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
         sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 
-        # Cleanup
+        # Cleanup backup files created by sed -i.bak
         find . -name "*.bak" -type f -delete
 
     - name: Patch dlib System Header (Linux only)
@@ -92,9 +100,9 @@ jobs:
         sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' /usr/include/dlib/gui_core/gui_core_kernel_2.h
 
     - name: Configure CMake
-      # -DBoost_NO_BOOST_CMAKE=ON: Fixes error on macOS where Boost 1.90+ Config files are missing component configs.
-      # -Wno-dev: Suppresses non-critical developer warnings (like the version policy warning).
-      # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Ensures compatibility for the version check.
+      # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Fixes policy error on new CMake
+      # -DBoost_NO_BOOST_CMAKE=ON: Fixes Boost 1.90 finding error on macOS (though we use OPTIONAL_COMPONENTS now, this is still safe)
+      # -Wno-dev: Suppresses warnings
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBoost_NO_BOOST_CMAKE=ON -Wno-dev
 
     - name: Build
