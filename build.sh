@@ -117,20 +117,37 @@ if [ -f "src/api/Detect.cpp" ]; then
     run_sed 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 fi
 
-# --- Fix 3: Dlib System Header Patch (Linux Only) ---
+# --- Fix 3: Dlib System Header Patch (Linux & macOS) ---
+echo "Checking Dlib GUI support configuration..."
+DLIB_HEADER=""
+
 if [ "$OS" == "Linux" ]; then
-    echo "Applying Dlib GUI patch (Linux only)..."
-    # This requires sudo as it modifies system headers
-    # We check if the line already exists to avoid duplicate entries
     DLIB_HEADER="/usr/include/dlib/gui_core/gui_core_kernel_2.h"
-    if [ -f "$DLIB_HEADER" ]; then
-        if ! grep -q "#undef DLIB_NO_GUI_SUPPORT" "$DLIB_HEADER"; then
-            echo "Patching $DLIB_HEADER..."
-            sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' "$DLIB_HEADER"
-        else
-            echo "Dlib header already patched."
-        fi
+elif [ "$OS" == "Darwin" ]; then
+    # On macOS, find path via brew
+    if command -v brew &> /dev/null; then
+        DLIB_PREFIX="$(brew --prefix dlib)"
+        DLIB_HEADER="$DLIB_PREFIX/include/dlib/gui_core/gui_core_kernel_2.h"
     fi
+fi
+
+if [ -n "$DLIB_HEADER" ] && [ -f "$DLIB_HEADER" ]; then
+    # Check if the undef line already exists
+    if ! grep -q "#undef DLIB_NO_GUI_SUPPORT" "$DLIB_HEADER"; then
+        echo "Patching Dlib header at $DLIB_HEADER to enable GUI support..."
+        
+        # Check permissions and use sudo if necessary
+        if [ -w "$DLIB_HEADER" ]; then
+            sed -i.bak '1i #undef DLIB_NO_GUI_SUPPORT' "$DLIB_HEADER"
+        else
+            echo "Requesting sudo permission to patch system header..."
+            sudo sed -i.bak '1i #undef DLIB_NO_GUI_SUPPORT' "$DLIB_HEADER"
+        fi
+    else
+        echo "Dlib header already patched."
+    fi
+else
+    echo "Warning: Dlib header file not found at expected location ($DLIB_HEADER). Skipping patch."
 fi
 
 # Cleanup backup files
