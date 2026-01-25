@@ -84,26 +84,50 @@ set(CMAKE_CXX_FLAGS "-O2")
 # Find Packages
 # ------------------------------------------------------------------------------
 
-# [Platform Logic]
+# Common Packages
+find_package(fmt CONFIG REQUIRED)
+
+# [Platform Specific Logic]
 if(APPLE)
-  # macOS (Homebrew Boost 1.90+):
+  # --- macOS (Homebrew) ---
   set(Boost_USE_STATIC_LIBS OFF)
+  set(Msgpack_STATIC OFF)
+  set(OpenCV_STATIC OFF)
   
   find_package(Boost REQUIRED)
-  
-  find_package(Boost COMPONENTS system)
+  find_package(Boost OPTIONAL_COMPONENTS system)
+
+  find_package(Msgpack QUIET)
+  if(NOT Msgpack_FOUND)
+     find_path(Msgpack_INCLUDE_DIRS NAMES msgpack.hpp HINTS /opt/homebrew/include /usr/local/include)
+     if(Msgpack_INCLUDE_DIRS)
+        set(Msgpack_FOUND TRUE)
+        message(STATUS "Found Msgpack headers (Header-only): ${Msgpack_INCLUDE_DIRS}")
+     else()
+        message(FATAL_ERROR "Could NOT find Msgpack.")
+     endif()
+  endif()
+
+  find_package(OpenCV REQUIRED)
+
 else()
-  # Linux (Ubuntu/Debian):
+  # --- Linux (Ubuntu/Debian) ---
   set(Boost_USE_STATIC_LIBS ON)
+  set(Msgpack_STATIC ON)
+  set(OpenCV_STATIC ON)
+  
+  # Boost
   set(Boost_COMPONENTS system)
   find_package(Boost REQUIRED COMPONENTS ${Boost_COMPONENTS})
+  
+  # Msgpack
+  find_package(Msgpack REQUIRED)
+  
+  # OpenCV
+  find_package(OpenCV REQUIRED)
 endif()
 
-find_package(fmt CONFIG REQUIRED)
-set(Msgpack_STATIC ON)
-find_package(Msgpack REQUIRED)
-set(OpenCV_STATIC ON)
-find_package(OpenCV REQUIRED)
+# Other Common Packages
 find_package(Json REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(LZ4 REQUIRED)
