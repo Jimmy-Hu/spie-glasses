@@ -3,7 +3,7 @@
 ##
 ## Original Author: ChienYu Lin
 ##
-cmake_minimum_required (VERSION 3.1)											#	set cmake minimum version
+cmake_minimum_required (VERSION 3.5)											#	set cmake minimum version
 
 if (DEFINED USE_HUNTER)
   if(NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/cmake/HunterGate.cmake")
