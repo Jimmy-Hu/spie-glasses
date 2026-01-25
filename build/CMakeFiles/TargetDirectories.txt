@@ -1,7 +1,0 @@
-D:/GitHub/spie-glasses/build/CMakeFiles/rebuild_cache.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/edit_cache.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/api.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/image-client.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/audio-client.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/server.dir
-D:/GitHub/spie-glasses/build/CMakeFiles/hint-client.dir
