@@ -48,8 +48,8 @@ jobs:
 
     - name: Patch Source Code for CI
       # Fix 1: 'get_io_service' error due to newer Boost version in CI environment
-      #        We only replace the internal call 'm_ws.get_io_service()' and cast it to io_context&
       # Fix 2: OpenCV 4.x compatibility (CV_BGR2HSV -> cv::COLOR_BGR2HSV)
+      # Fix 3: dlib GUI error (DLIB_NO_GUI_SUPPORT defined by default in package)
       run: |
         # Fix Boost.Asio: Only replace the usage inside the function, not the function definition
         sed -i 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
@@ -57,6 +57,10 @@ jobs:
         # Fix OpenCV constants in src/api/Detect.cpp
         sed -i 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
         sed -i 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
+
+        # Fix dlib GUI compilation: force undefine DLIB_NO_GUI_SUPPORT in the system header
+        # This bypasses the #error check since we already installed libx11-dev
+        sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' /usr/include/dlib/gui_core/gui_core_kernel_2.h
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required for single-configuration generators such as "Unix Makefiles".
