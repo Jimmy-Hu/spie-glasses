@@ -93,6 +93,8 @@ if(APPLE)
   set(Boost_USE_STATIC_LIBS OFF)
   set(Msgpack_STATIC OFF)
   set(OpenCV_STATIC OFF)
+
+  add_definitions(-Dio_service=io_context)
   
   find_package(Boost REQUIRED)
   find_package(Boost OPTIONAL_COMPONENTS system)
