@@ -115,19 +115,22 @@ if(APPLE)
   find_package(Boost REQUIRED)
   find_package(Boost OPTIONAL_COMPONENTS system)
 
-  # Msgpack: Try to find package, if failed manually search for Header (Homebrew msgpack-cxx is Header-only)
+  # Msgpack: Try to find package, if failed manually search for Header
   find_package(Msgpack QUIET)
   if(NOT Msgpack_FOUND)
      find_path(Msgpack_INCLUDE_DIRS NAMES msgpack.hpp HINTS /opt/homebrew/include /usr/local/include)
      if(Msgpack_INCLUDE_DIRS)
         set(Msgpack_FOUND TRUE)
-        # Explicitly clear LIBRARIES to prevent linker errors with "Msgpack_LIBRARIES-NOTFOUND"
-        set(Msgpack_LIBRARIES "")
         message(STATUS "Found Msgpack headers (Header-only): ${Msgpack_INCLUDE_DIRS}")
-     else()
-        message(FATAL_ERROR "Could NOT find Msgpack.")
      endif()
   endif()
+  
+  # CRITICAL FIX: Force clear ALL library variables for Msgpack on macOS.
+  # This prevents "ld: library 'Msgpack_LIBRARIES-NOTFOUND' not found" errors.
+  # We do this unconditionally because we know Homebrew Msgpack is header-only.
+  set(Msgpack_LIBRARIES "")
+  set(Msgpack_LIBRARY "")
+  set(Msgpack_LIBS "")
 
   # OpenCV: Use default (Dynamic)
   find_package(OpenCV REQUIRED)
@@ -188,7 +191,6 @@ endif()
 
 # 2. Handle fmt
 # Use fmt::fmt target to ensure correct include/library paths are used
-# This fixes "ld: library 'fmt' not found" on macOS
 target_link_libraries(deps_3rdparty INTERFACE fmt::fmt)
 
 # 3. Handle other Generic Packages (Convert variables to Interface properties)
