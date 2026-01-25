@@ -53,6 +53,7 @@ jobs:
     - name: Patch Source Code for CI
       # Fix 1: 'get_io_service' error due to newer Boost version
       # Fix 2: OpenCV 4.x compatibility
+      # Fix 3: Boost Resolver Iterator deprecation (hint-client)
       # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
         # --- Fix 1: Boost.Asio io_context compatibility ---
@@ -88,6 +89,15 @@ jobs:
         # --- Fix 2: OpenCV 4.x compatibility ---
         sed -i.bak 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
         sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
+
+        # --- Fix 3: Boost Resolver Iterator deprecation (hint-client) ---
+        # 1. Replace deprecated tcp::resolver::iterator with tcp::resolver::results_type
+        sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/hint-client/client.hpp
+        sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/hint-client/main.cpp
+        
+        # 2. Fix resolve call (resolver.resolve(query) is removed). 
+        # Replace with resolver.resolve(argv[1], argv[2]) assuming standard client args.
+        sed -i.bak 's/resolver.resolve(query)/resolver.resolve(argv[1], argv[2])/g' src/hint-client/main.cpp
 
         # Cleanup backup files created by sed -i.bak
         find . -name "*.bak" -type f -delete
