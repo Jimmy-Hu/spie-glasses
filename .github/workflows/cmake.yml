@@ -53,8 +53,6 @@ jobs:
     - name: Patch Source Code for CI
       # Fix 1: 'get_io_service' error due to newer Boost version
       # Fix 2: OpenCV 4.x compatibility
-      # Fix 3: fmt linker error on macOS (use fmt::fmt target)
-      # Fix 4: Msgpack linker error on macOS (Msgpack_LIBRARIES-NOTFOUND)
       # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
         # --- Fix 1: Boost.Asio io_context compatibility ---
@@ -90,16 +88,6 @@ jobs:
         # --- Fix 2: OpenCV 4.x compatibility ---
         sed -i.bak 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
         sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
-
-        # --- Fix 3: fmt linker error on macOS ---
-        # Replace 'INTERFACE fmt' with 'INTERFACE fmt::fmt' to use the imported target (full path) instead of -lfmt
-        sed -i.bak 's/target_link_libraries(deps_3rdparty INTERFACE fmt)/target_link_libraries(deps_3rdparty INTERFACE fmt::fmt)/g' CMakeLists.txt
-
-        # --- Fix 4: Msgpack linker error on macOS ---
-        # If find_package(Msgpack) fails, Msgpack_LIBRARIES might be set to "Msgpack_LIBRARIES-NOTFOUND".
-        # Even if we manually find headers and set Msgpack_FOUND to TRUE, the bad library variable persists.
-        # We inject 'set(Msgpack_LIBRARIES "")' into the fallback logic to clear it.
-        sed -i.bak 's/set(Msgpack_FOUND TRUE)/set(Msgpack_FOUND TRUE); set(Msgpack_LIBRARIES "")/g' CMakeLists.txt
 
         # Cleanup backup files created by sed -i.bak
         find . -name "*.bak" -type f -delete
