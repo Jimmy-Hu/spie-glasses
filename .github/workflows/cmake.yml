@@ -51,8 +51,23 @@ jobs:
       # Fix 2: OpenCV 4.x compatibility (CV_BGR2HSV -> cv::COLOR_BGR2HSV)
       # Fix 3: dlib GUI error (DLIB_NO_GUI_SUPPORT defined by default in package)
       run: |
-        # Fix Boost.Asio: Only replace the usage inside the function, not the function definition
+        # Fix Boost.Asio: Replace legacy get_io_service() with get_executor().context() casted to io_context
+        # We target specific files and variable names based on compiler errors
+        
+        # 1. basic_msgpack_writer.hpp (variable: m_ws)
         sed -i 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
+        
+        # 2. basic_msgpack_reader.hpp (variable: m_rs)
+        sed -i 's/m_rs.get_io_service()/((boost::asio::io_context\&)m_rs.get_executor().context())/g' include/api/basic_msgpack_reader.hpp
+
+        # 3. session.hpp (variable: m_socket)
+        sed -i 's/m_socket.get_io_service()/((boost::asio::io_context\&)m_socket.get_executor().context())/g' src/server/session.hpp
+
+        # 4. server.hpp (variable: m_acceptor)
+        sed -i 's/m_acceptor.get_io_service()/((boost::asio::io_context\&)m_acceptor.get_executor().context())/g' src/server/server.hpp
+
+        # 5. asio_msgpack.hpp (variable: s)
+        sed -i 's/s.get_io_service()/((boost::asio::io_context\&)s.get_executor().context())/g' include/api/asio_msgpack.hpp
         
         # Fix OpenCV constants in src/api/Detect.cpp
         sed -i 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
