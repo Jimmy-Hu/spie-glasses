@@ -48,7 +48,7 @@ jobs:
       # Install libraries required by CMakeLists.txt on macOS via Homebrew
       run: |
         brew update
-        brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas
+        brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas libx11
 
     - name: Patch Source Code for CI
       # Fix 1: 'get_io_service' error due to newer Boost version
@@ -73,7 +73,6 @@ jobs:
         # queued_writer.hpp: m_writer.get_io_service().post(...) -> boost::asio::post(m_writer.get_io_service().get_executor(), ...)
         # Note: m_writer is a wrapper (basic_msgpack_writer) and usually does NOT have get_executor().
         # We must call get_io_service() first (which returns context), then get_executor() from that context.
-        # CRITICAL FIX: Ensure we use .get_io_service().get_executor() here.
         sed -i.bak 's/m_writer.get_io_service().post(/boost::asio::post(m_writer.get_io_service().get_executor(), /g' include/api/queued_writer.hpp
 
         # B. Fix get_io_service() implementation in headers
@@ -98,6 +97,17 @@ jobs:
       # Fix dlib GUI error on Linux (DLIB_NO_GUI_SUPPORT defined by default in package)
       run: |
         sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' /usr/include/dlib/gui_core/gui_core_kernel_2.h
+
+    - name: Patch dlib System Header (macOS only)
+      if: runner.os == 'macOS'
+      # Fix dlib GUI error on macOS (DLIB_NO_GUI_SUPPORT defined by default in Homebrew bottle)
+      # We find the dlib prefix using brew --prefix, then patch the header.
+      run: |
+        DLIB_PREFIX=$(brew --prefix dlib)
+        DLIB_HEADER="${DLIB_PREFIX}/include/dlib/gui_core/gui_core_kernel_2.h"
+        echo "Patching macOS Dlib header at: ${DLIB_HEADER}"
+        # Use -i.bak for BSD sed compatibility, force undefine at the top of the file
+        sed -i.bak '1i #undef DLIB_NO_GUI_SUPPORT' "${DLIB_HEADER}"
 
     - name: Configure CMake
       # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Fixes policy error on new CMake
