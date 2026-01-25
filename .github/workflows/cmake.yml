@@ -106,8 +106,9 @@ jobs:
         DLIB_PREFIX=$(brew --prefix dlib)
         DLIB_HEADER="${DLIB_PREFIX}/include/dlib/gui_core/gui_core_kernel_2.h"
         echo "Patching macOS Dlib header at: ${DLIB_HEADER}"
-        # Use -i.bak for BSD sed compatibility, force undefine at the top of the file
-        sed -i.bak '1i #undef DLIB_NO_GUI_SUPPORT' "${DLIB_HEADER}"
+        # Prepend the undef line using a temporary file to avoid BSD sed syntax issues with 'i' command
+        echo "#undef DLIB_NO_GUI_SUPPORT" | cat - "${DLIB_HEADER}" > "${DLIB_HEADER}.tmp"
+        mv "${DLIB_HEADER}.tmp" "${DLIB_HEADER}"
 
     - name: Configure CMake
       # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Fixes policy error on new CMake
