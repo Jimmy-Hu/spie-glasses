@@ -44,7 +44,10 @@ jobs:
           zlib1g-dev \
           liblz4-dev \
           libdlib-dev \
-          libx11-dev
+          libx11-dev \
+          libblas-dev \
+          liblapack-dev \
+          libopenblas-dev
 
     - name: Patch Source Code for CI
       # Fix 1: 'get_io_service' error due to newer Boost version in CI environment
