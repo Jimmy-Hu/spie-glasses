@@ -82,12 +82,14 @@ jobs:
     - name: Patch dlib System Header (Linux only)
       if: runner.os == 'Linux'
       # Fix dlib GUI error on Linux (DLIB_NO_GUI_SUPPORT defined by default in package)
-      # This is usually not needed on macOS Homebrew builds
       run: |
         sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' /usr/include/dlib/gui_core/gui_core_kernel_2.h
 
     - name: Configure CMake
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
+      # -DBoost_NO_BOOST_CMAKE=ON: Fixes error on macOS where Boost 1.90+ Config files are missing component configs.
+      # -Wno-dev: Suppresses non-critical developer warnings (like the version policy warning).
+      # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Ensures compatibility for the version check.
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBoost_NO_BOOST_CMAKE=ON -Wno-dev
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
