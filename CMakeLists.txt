@@ -83,7 +83,14 @@ set(CMAKE_CXX_FLAGS "-O2")
 # ------------------------------------------------------------------------------
 # Find Packages
 # ------------------------------------------------------------------------------
-set(Boost_USE_STATIC_LIBS        ON)
+
+# [Platform Logic]
+if(APPLE)
+  set(Boost_USE_STATIC_LIBS OFF)
+else()
+  set(Boost_USE_STATIC_LIBS ON)
+endif()
+
 set(Boost_COMPONENTS system)
 
 find_package(Boost REQUIRED COMPONENTS ${Boost_COMPONENTS})
