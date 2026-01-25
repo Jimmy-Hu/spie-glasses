@@ -154,7 +154,7 @@ if(WIN32)
   target_link_libraries(deps_3rdparty INTERFACE wsock32 ws2_32)
 endif()
 
-target_link_libraries(deps_3rdparty INTERFACE fmt)
+target_link_libraries(deps_3rdparty INTERFACE fmt::fmt)
 
 foreach(package ${packages})
   if(NOT "${package}" STREQUAL "Boost")
