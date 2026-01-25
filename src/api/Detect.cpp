@@ -90,12 +90,12 @@ namespace api {
 		try
 		{
 			cv::Mat image_temp;
-			cv::cvtColor(image, image_temp, CV_BGR2HSV);
+			cv::cvtColor(image, image_temp, cv::COLOR_BGR2HSV);
 			cv::split(image_temp,tmp);
 			cv::medianBlur(tmp[2], tmp[2], 3);
 			cv::equalizeHist(tmp[2], tmp[2]);
 			cv::merge(tmp,image_temp);
-			cv::cvtColor(image_temp, image, CV_HSV2BGR);
+			cv::cvtColor(image_temp, image, cv::COLOR_HSV2BGR);
 
 			dlib::matrix<rgb_pixel> img;
 			std::vector<string> person;
