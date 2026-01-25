@@ -12,25 +12,19 @@ env:
 
 jobs:
   build:
-    # The CMake configure and build commands are platform agnostic and should work equally well on Windows or Mac.
-    # You can convert this to a matrix build if you need cross-platform coverage.
-    # See: https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions/managing-complex-workflows#using-a-build-matrix
-    runs-on: ubuntu-latest
+    # Use matrix strategy to run on both Ubuntu and macOS
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
 
     steps:
     - uses: actions/checkout@v3
 
-    - name: Install System Dependencies
-      # Install libraries required by CMakeLists.txt
-      # mapping:
-      #   Boost   -> libboost-all-dev (includes system, filesystem, etc.)
-      #   fmt     -> libfmt-dev
-      #   Msgpack -> libmsgpack-dev
-      #   OpenCV  -> libopencv-dev
-      #   Json    -> nlohmann-json3-dev (Assumes nlohmann-json is the target)
-      #   ZLIB    -> zlib1g-dev
-      #   LZ4     -> liblz4-dev
-      #   dlib    -> libdlib-dev
+    - name: Install System Dependencies (Linux)
+      if: runner.os == 'Linux'
+      # Install libraries required by CMakeLists.txt on Ubuntu
       run: |
         sudo apt-get update
         sudo apt-get install -y \
@@ -49,45 +43,51 @@ jobs:
           liblapack-dev \
           libopenblas-dev
 
+    - name: Install System Dependencies (macOS)
+      if: runner.os == 'macOS'
+      # Install libraries required by CMakeLists.txt on macOS via Homebrew
+      run: |
+        brew update
+        brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas
+
     - name: Patch Source Code for CI
-      # Fix 1: 'get_io_service' error due to newer Boost version in CI environment
-      # Fix 2: OpenCV 4.x compatibility (CV_BGR2HSV -> cv::COLOR_BGR2HSV)
-      # Fix 3: dlib GUI error (DLIB_NO_GUI_SUPPORT defined by default in package)
+      # Fix 1: 'get_io_service' error due to newer Boost version
+      # Fix 2: OpenCV 4.x compatibility
+      # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
         # Fix Boost.Asio: Replace legacy get_io_service() with get_executor().context() casted to io_context
-        # We target specific files and variable names based on compiler errors
         
-        # 1. basic_msgpack_writer.hpp (variable: m_ws)
-        sed -i 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
+        # 1. basic_msgpack_writer.hpp
+        sed -i.bak 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
         
-        # 2. basic_msgpack_reader.hpp (variable: m_rs)
-        sed -i 's/m_rs.get_io_service()/((boost::asio::io_context\&)m_rs.get_executor().context())/g' include/api/basic_msgpack_reader.hpp
+        # 2. basic_msgpack_reader.hpp
+        sed -i.bak 's/m_rs.get_io_service()/((boost::asio::io_context\&)m_rs.get_executor().context())/g' include/api/basic_msgpack_reader.hpp
 
-        # 3. session.hpp (variable: m_socket)
-        sed -i 's/m_socket.get_io_service()/((boost::asio::io_context\&)m_socket.get_executor().context())/g' src/server/session.hpp
+        # 3. session.hpp
+        sed -i.bak 's/m_socket.get_io_service()/((boost::asio::io_context\&)m_socket.get_executor().context())/g' src/server/session.hpp
 
-        # 4. server.hpp (variable: m_acceptor)
-        sed -i 's/m_acceptor.get_io_service()/((boost::asio::io_context\&)m_acceptor.get_executor().context())/g' src/server/server.hpp
+        # 4. server.hpp
+        sed -i.bak 's/m_acceptor.get_io_service()/((boost::asio::io_context\&)m_acceptor.get_executor().context())/g' src/server/server.hpp
 
-        # 5. asio_msgpack.hpp (variable: s)
-        sed -i 's/s.get_io_service()/((boost::asio::io_context\&)s.get_executor().context())/g' include/api/asio_msgpack.hpp
+        # 5. asio_msgpack.hpp
+        sed -i.bak 's/s.get_io_service()/((boost::asio::io_context\&)s.get_executor().context())/g' include/api/asio_msgpack.hpp
         
         # Fix OpenCV constants in src/api/Detect.cpp
-        sed -i 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
-        sed -i 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
+        sed -i.bak 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
+        sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 
-        # Fix dlib GUI compilation: force undefine DLIB_NO_GUI_SUPPORT in the system header
-        # This bypasses the #error check since we already installed libx11-dev
+        # Cleanup backup files created by sed -i.bak
+        find . -name "*.bak" -type f -delete
+
+    - name: Patch dlib System Header (Linux only)
+      if: runner.os == 'Linux'
+      # Fix dlib GUI error on Linux (DLIB_NO_GUI_SUPPORT defined by default in package)
+      # This is usually not needed on macOS Homebrew builds
+      run: |
         sudo sed -i '1i #undef DLIB_NO_GUI_SUPPORT' /usr/include/dlib/gui_core/gui_core_kernel_2.h
 
     - name: Configure CMake
-      # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required for single-configuration generators such as "Unix Makefiles".
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
-      # Build your program with the given configuration
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
-
-    # - name: Test
-    #   working-directory: ${{github.workspace}}/build
-    #   run: ctest -C ${{env.BUILD_TYPE}}
