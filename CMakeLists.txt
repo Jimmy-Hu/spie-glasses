@@ -86,14 +86,19 @@ set(CMAKE_CXX_FLAGS "-O2")
 
 # [Platform Logic]
 if(APPLE)
+  # macOS (Homebrew Boost 1.90+):
   set(Boost_USE_STATIC_LIBS OFF)
+  
+  find_package(Boost REQUIRED)
+  
+  find_package(Boost COMPONENTS system)
 else()
+  # Linux (Ubuntu/Debian):
   set(Boost_USE_STATIC_LIBS ON)
+  set(Boost_COMPONENTS system)
+  find_package(Boost REQUIRED COMPONENTS ${Boost_COMPONENTS})
 endif()
 
-set(Boost_COMPONENTS system)
-
-find_package(Boost REQUIRED COMPONENTS ${Boost_COMPONENTS})
 find_package(fmt CONFIG REQUIRED)
 set(Msgpack_STATIC ON)
 find_package(Msgpack REQUIRED)
@@ -108,11 +113,16 @@ set(packages Boost fmt Msgpack OpenCV ZLIB dlib Json LZ4)
 
 add_library(deps_3rdparty INTERFACE)
 
-foreach(component ${Boost_COMPONENTS})
-  if(TARGET Boost::${component})
-    target_link_libraries(deps_3rdparty INTERFACE Boost::${component})
-  endif()
-endforeach()
+if(TARGET Boost::system)
+  target_link_libraries(deps_3rdparty INTERFACE Boost::system)
+elseif(TARGET Boost::headers)
+  target_link_libraries(deps_3rdparty INTERFACE Boost::headers)
+elseif(TARGET Boost::boost)
+  target_link_libraries(deps_3rdparty INTERFACE Boost::boost)
+else()
+  target_include_directories(deps_3rdparty INTERFACE ${Boost_INCLUDE_DIRS})
+  target_link_libraries(deps_3rdparty INTERFACE ${Boost_LIBRARIES})
+endif()
 
 if(WIN32)
   target_link_libraries(deps_3rdparty INTERFACE wsock32 ws2_32)
@@ -121,8 +131,10 @@ endif()
 target_link_libraries(deps_3rdparty INTERFACE fmt)
 
 foreach(package ${packages})
-  link_legacy_package_vars(deps_3rdparty ${package})
-  message(STATUS "Processed dependencies for: ${package}")
+  if(NOT "${package}" STREQUAL "Boost")
+    link_legacy_package_vars(deps_3rdparty ${package})
+    message(STATUS "Processed dependencies for: ${package}")
+  endif()
 endforeach()
 
 # ------------------------------------------------------------------------------
