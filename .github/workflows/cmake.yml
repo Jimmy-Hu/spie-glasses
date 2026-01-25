@@ -44,7 +44,19 @@ jobs:
           nlohmann-json3-dev \
           zlib1g-dev \
           liblz4-dev \
-          libdlib-dev
+          libdlib-dev \
+          libx11-dev
+
+    - name: Patch Source Code for CI
+      # Fix 1: 'get_io_service' error due to newer Boost version in CI environment
+      # Fix 2: OpenCV 4.x compatibility (CV_BGR2HSV -> cv::COLOR_BGR2HSV)
+      run: |
+        # Fix Boost.Asio
+        sed -i 's/get_io_service()/get_executor().context()/g' include/api/basic_msgpack_writer.hpp
+        
+        # Fix OpenCV constants in src/api/Detect.cpp
+        sed -i 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
+        sed -i 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required for single-configuration generators such as "Unix Makefiles".
