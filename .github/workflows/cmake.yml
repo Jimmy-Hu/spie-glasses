@@ -51,32 +51,38 @@ jobs:
         brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas
 
     - name: Patch Source Code for CI
-      # Fix 1: 'get_io_service' error due to newer Boost version
-      # Fix 2: OpenCV 4.x compatibility
-      # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
-        # Fix Boost.Asio: Replace legacy get_io_service() with get_executor().context() casted to io_context
+        # --- Fix 1: Boost.Asio io_context compatibility (macOS/Boost 1.90+) ---
         
-        # 1. basic_msgpack_writer.hpp
+        # A. Replace deprecated '.post()' calls with 'boost::asio::post(executor, ...)'
+        # We target specific variables to ensure correctness
+        
+        # asio_msgpack.hpp: s.get_io_service().post(...) -> boost::asio::post(s.get_executor(), ...)
+        sed -i.bak 's/s.get_io_service().post(/boost::asio::post(s.get_executor(), /g' include/api/asio_msgpack.hpp
+        
+        # session.hpp: m_socket.get_io_service().post(...) -> boost::asio::post(m_socket.get_executor(), ...)
+        sed -i.bak 's/m_socket.get_io_service().post(/boost::asio::post(m_socket.get_executor(), /g' src/server/session.hpp
+        
+        # server.hpp: m_acceptor.get_io_service().post(...) -> boost::asio::post(m_acceptor.get_executor(), ...)
+        sed -i.bak 's/m_acceptor.get_io_service().post(/boost::asio::post(m_acceptor.get_executor(), /g' src/server/server.hpp
+        
+        # queued_writer.hpp: m_writer.get_io_service().post(...) -> boost::asio::post(m_writer.get_executor(), ...)
+        sed -i.bak 's/m_writer.get_io_service().post(/boost::asio::post(m_writer.get_executor(), /g' include/api/queued_writer.hpp
+
+        # B. Fix get_io_service() implementation in headers
+        # Note: Return types are handled by -Dio_service=io_context in CMakeLists.txt
+        
+        # basic_msgpack_writer.hpp
         sed -i.bak 's/m_ws.get_io_service()/((boost::asio::io_context\&)m_ws.get_executor().context())/g' include/api/basic_msgpack_writer.hpp
         
-        # 2. basic_msgpack_reader.hpp
+        # basic_msgpack_reader.hpp
         sed -i.bak 's/m_rs.get_io_service()/((boost::asio::io_context\&)m_rs.get_executor().context())/g' include/api/basic_msgpack_reader.hpp
 
-        # 3. session.hpp
-        sed -i.bak 's/m_socket.get_io_service()/((boost::asio::io_context\&)m_socket.get_executor().context())/g' src/server/session.hpp
-
-        # 4. server.hpp
-        sed -i.bak 's/m_acceptor.get_io_service()/((boost::asio::io_context\&)m_acceptor.get_executor().context())/g' src/server/server.hpp
-
-        # 5. asio_msgpack.hpp
-        sed -i.bak 's/s.get_io_service()/((boost::asio::io_context\&)s.get_executor().context())/g' include/api/asio_msgpack.hpp
-        
-        # Fix OpenCV constants in src/api/Detect.cpp
+        # --- Fix 2: OpenCV 4.x compatibility ---
         sed -i.bak 's/CV_BGR2HSV/cv::COLOR_BGR2HSV/g' src/api/Detect.cpp
         sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 
-        # Cleanup backup files created by sed -i.bak
+        # Cleanup
         find . -name "*.bak" -type f -delete
 
     - name: Patch dlib System Header (Linux only)
