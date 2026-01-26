@@ -112,6 +112,9 @@ echo ">>> Using $CORES cores for compilation."
 # Build the project
 cmake --build "$BUILD_DIR" --config Release --parallel "$CORES"
 
+cp ./src/server/shape_predictor_68_face_landmarks.dat ./build/export/bin/shape_predictor_68_face_landmarks.dat
+cp ./src/server/Training_official.dat ./build/export/bin/Training_official.dat
+
 echo "=============================================================================="
 echo ">>> Build completed successfully!"
 echo ">>> Executables can be found in: $BUILD_DIR/export/bin/"
