@@ -88,6 +88,8 @@ public:
     void stop_random_hint() {
         m_start = false;
     }
+
+    //  do_random_hint member function implementation
     void do_random_hint() {
         static char chars[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         std::vector<std::string> v(std::rand()%5);
@@ -99,7 +101,7 @@ public:
         };
         std::generate(v.begin(),v.end(),gen_str);
         m_msgio.post("hint_names", std::make_tuple(v));
-        m_timer.expires_from_now(std::chrono::seconds(1));
+        m_timer.expires_after(std::chrono::seconds(1));
         m_timer.async_wait(
             [this](auto && ec){
                 if (!ec && m_start)
