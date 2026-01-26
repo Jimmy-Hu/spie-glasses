@@ -39,7 +39,7 @@ class client
 public:
     using command_type = std::vector<std::string>;
     client(boost::asio::io_service& io_service,
-           tcp::resolver::iterator endpoint_iterator,
+           tcp::resolver::results_type endpoint_iterator,
            cv::VideoCapture & cap,
            size_t login_group = 1
         )
@@ -115,11 +115,11 @@ private:
         login();
         m_msgio.async_dispatch();
     }
-    void do_connect(tcp::resolver::iterator endpoint_iterator)
+    void do_connect(tcp::resolver::results_type endpoint_iterator)
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
-                [this](boost::system::error_code const & ec, tcp::resolver::iterator)
+                [this](boost::system::error_code const & ec, tcp::resolver::results_type)
                 {
                     if (!ec) {
                         this->on_connected();

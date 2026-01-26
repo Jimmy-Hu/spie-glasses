@@ -38,7 +38,7 @@ class client
 public:
     using command_type = std::vector<std::string>;
     client(boost::asio::io_service& io_service,
-                tcp::resolver::iterator endpoint_iterator)
+                tcp::resolver::results_type endpoint_iterator)
         : m_ios(io_service)
         , m_socket(io_service)
         , m_w(m_socket)
@@ -66,11 +66,11 @@ private:
         msgpack::pack(*sbuf, v);
         m_w.async_write(*sbuf,[sbuf](auto && ec) { std::cerr << "write done" << std::endl; });
     }
-    void do_connect(tcp::resolver::iterator endpoint_iterator)
+    void do_connect(tcp::resolver::results_type endpoint_iterator)
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
-                [this](boost::system::error_code const & ec, tcp::resolver::iterator)
+                [this](boost::system::error_code const & ec, tcp::resolver::results_type)
                 {
                     if (!ec) {
                         this->on_connected();
