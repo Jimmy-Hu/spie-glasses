@@ -55,7 +55,7 @@ public:
 
     //  close member function implementation
     void close() {
-        boost::asio::post(m_ios.post.get_executor(), [this]() {m_socket.close();});
+        boost::asio::post(m_ios.get_executor(), [this]() {m_socket.close();});
     }
     void write(std::vector<std::string> const & v) {
         if (v.size() < 2) return;
