@@ -51,8 +51,9 @@ public:
             ("people_names", [this](auto v){return this->on_people_names_arrived(std::move(v));});
     }
 
+    //  close member function implementation
     void close() {
-       m_ios.post([this]() {m_socket.close();});
+       boost::asio::post(m_ios.get_executor(), [this]() {m_socket.close();});
     }
 
     void write(std::vector<std::string> const & v) {
