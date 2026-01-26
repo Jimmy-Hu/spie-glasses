@@ -112,11 +112,12 @@ private:
         login();
         m_msgio.async_dispatch();
     }
+    //  do_connect member function implementation
     void do_connect(tcp::resolver::results_type endpoint_iterator)
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
-                [this](boost::system::error_code const & ec, tcp::resolver::results_type)
+                [this](boost::system::error_code const & ec, boost::asio::ip::tcp::endpoint)
                 {
                     if (!ec) {
                         this->on_connected();
