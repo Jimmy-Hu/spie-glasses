@@ -109,6 +109,8 @@ public:
                 // Construct a timer with an absolute expiry time.
             });
     }
+
+    //  do_random_hint_names member function implementation
     void do_random_hint_names() {
         static char const *names[] = {"Lin", "Jimmy", "Hex", "Lee", "Frank", "Alice", "John", "Adamda"};
         bool name_used[8] = {false};
@@ -124,7 +126,7 @@ public:
             ++iter;
         }
         m_msgio.post("hint_names", std::make_tuple(v));
-        m_timer.expires_from_now(std::chrono::seconds(1));
+        m_timer.expires_after(std::chrono::seconds(1));
         m_timer.async_wait(
             [this](auto && ec){
                 if (!ec && m_start)
