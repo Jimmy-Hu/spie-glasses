@@ -146,7 +146,7 @@ public:
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
-                [this](boost::system::error_code const & ec, tcp::resolver::results_type)
+                [this](boost::system::error_code const & ec, boost::asio::ip::tcp::endpoint)
                 {
                     if (!ec) {
                         this->on_connected();
