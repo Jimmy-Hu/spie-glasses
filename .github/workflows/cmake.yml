@@ -54,6 +54,7 @@ jobs:
       # Fix 1: 'get_io_service' error due to newer Boost version
       # Fix 2: OpenCV 4.x compatibility
       # Fix 3: Boost Resolver Iterator deprecation (hint-client)
+      # Fix 4: Boost Resolver Iterator deprecation (image-client)
       # Note: We use 'sed -i.bak' to ensure compatibility between GNU sed (Linux) and BSD sed (macOS)
       run: |
         # --- Fix 1: Boost.Asio io_context compatibility ---
@@ -91,18 +92,48 @@ jobs:
         sed -i.bak 's/CV_HSV2BGR/cv::COLOR_HSV2BGR/g' src/api/Detect.cpp
 
         # --- Fix 3: Boost Resolver Iterator deprecation (hint-client) ---
-        # 1. Replace deprecated tcp::resolver::iterator with tcp::resolver::results_type (Global replace)
+        # 1. Replace deprecated tcp::resolver::iterator with boost::asio::ip::tcp::resolver::results_type (Global replace)
         sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/hint-client/client.hpp
         sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/hint-client/main.cpp
         
         # 2. Fix the Lambda parameter inside async_connect.
         # The previous step incorrectly changed the lambda arg to 'results_type', but async_connect passes an 'endpoint'.
         # We match the pattern "ec, <results_type>" and change it to "ec, <endpoint>"
+        # Also matching the short form "tcp::resolver::results_type" in case of manual edits or partial matches.
         sed -i.bak 's/ec, boost::asio::ip::tcp::resolver::results_type/ec, boost::asio::ip::tcp::endpoint/g' src/hint-client/client.hpp
+        sed -i.bak 's/ec, tcp::resolver::results_type/ec, boost::asio::ip::tcp::endpoint/g' src/hint-client/client.hpp
         
         # 3. Fix resolve call (resolver.resolve(query) is removed). 
         # Replace with resolver.resolve(argv[1], argv[2]) assuming standard client args.
+        # Also handles the initializer list case: resolve({argv[1], argv[2]}) -> resolve(argv[1], argv[2])
         sed -i.bak 's/resolver.resolve(query)/resolver.resolve(argv[1], argv[2])/g' src/hint-client/main.cpp
+        sed -i.bak 's/resolver.resolve({ argv\[1\], argv\[2\] })/resolver.resolve(argv[1], argv[2])/g' src/hint-client/main.cpp
+
+        # 4. Fix other deprecated Boost.Asio members in hint-client
+        # UPDATED: Use .get_executor() to support both Boost 1.74 (Ubuntu) and 1.90 (macOS)
+        # m_ios.post(...) -> boost::asio::post(m_ios.get_executor(), ...)
+        sed -i.bak 's/m_ios.post(/boost::asio::post(m_ios.get_executor(), /g' src/hint-client/client.hpp
+        # m_timer.expires_from_now(...) -> m_timer.expires_after(...)
+        sed -i.bak 's/expires_from_now/expires_after/g' src/hint-client/client.hpp
+
+
+        # --- Fix 4: Boost Resolver Iterator deprecation (image-client) ---
+        # 1. Replace deprecated tcp::resolver::iterator with tcp::resolver::results_type
+        sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/image-client/client.hpp
+        sed -i.bak 's/tcp::resolver::iterator/boost::asio::ip::tcp::resolver::results_type/g' src/image-client/main.cpp
+        
+        # 2. Fix the Lambda parameter inside async_connect.
+        # Match "ec, <results_type>" and change it to "ec, <endpoint>"
+        # Also matching the short form "tcp::resolver::results_type"
+        sed -i.bak 's/ec, boost::asio::ip::tcp::resolver::results_type/ec, boost::asio::ip::tcp::endpoint/g' src/image-client/client.hpp
+        sed -i.bak 's/ec, tcp::resolver::results_type/ec, boost::asio::ip::tcp::endpoint/g' src/image-client/client.hpp
+        
+        # 3. Fix resolve call
+        # resolver.resolve({ argv[1], argv[2] }) -> resolver.resolve(argv[1], argv[2])
+        sed -i.bak 's/resolver.resolve({ argv\[1\], argv\[2\] })/resolver.resolve(argv[1], argv[2])/g' src/image-client/main.cpp
+
+        # 4. Fix m_ios.post (using .get_executor() for compatibility)
+        sed -i.bak 's/m_ios.post(/boost::asio::post(m_ios.get_executor(), /g' src/image-client/client.hpp
 
         # Cleanup backup files created by sed -i.bak
         find . -name "*.bak" -type f -delete
