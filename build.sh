@@ -37,6 +37,7 @@ $SUDO apt-get update
 # - libdlib-dev: Dlib machine learning library
 # - libx11-dev: Required for Dlib GUI support
 # - libblas-dev/liblapack-dev/libopenblas-dev: Linear algebra for Dlib
+# - Additional X11 libs: libxext-dev, libsm-dev, libxrender-dev (Added to fix DLIB_NO_GUI_SUPPORT issue)
 $SUDO apt-get install -y \
     build-essential \
     cmake \
@@ -49,11 +50,39 @@ $SUDO apt-get install -y \
     liblz4-dev \
     libdlib-dev \
     libx11-dev \
+    libxext-dev \
+    libsm-dev \
+    libxrender-dev \
     libblas-dev \
     liblapack-dev \
     libopenblas-dev
 
 echo ">>> Dependencies installed successfully."
+
+# ------------------------------------------------------------------------------
+# 1.5. Patch Dlib (Force Enable GUI)
+# ------------------------------------------------------------------------------
+# In some WSL/Ubuntu distributions, the default dlib package has DLIB_NO_GUI_SUPPORT 
+# defined by default or in a way that conflicts even when X11 is present.
+# We will check for the specific header that throws the error and comment out the check
+# or forcefully undefine the macro at the beginning of the file.
+DLIB_HEADER="/usr/include/dlib/gui_core/gui_core_kernel_2.h"
+
+if [ -f "$DLIB_HEADER" ]; then
+    echo ">>> Patching dlib header to force enable GUI support: $DLIB_HEADER"
+    # We use sed to insert '#undef DLIB_NO_GUI_SUPPORT' at the top of the file.
+    # This ensures that even if it was defined previously, we disable that definition
+    # before the check code runs.
+    # We verify if the patch is already applied to avoid duplicate lines.
+    if ! grep -q "#undef DLIB_NO_GUI_SUPPORT" "$DLIB_HEADER"; then
+        $SUDO sed -i '1i #undef DLIB_NO_GUI_SUPPORT' "$DLIB_HEADER"
+        echo ">>> Dlib header patched."
+    else
+        echo ">>> Dlib header already patched."
+    fi
+else
+    echo ">>> WARNING: Dlib header not found at $DLIB_HEADER. Skipping patch."
+fi
 
 # ------------------------------------------------------------------------------
 # 2. Configure CMake
