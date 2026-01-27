@@ -135,7 +135,7 @@ namespace api {
         msgpack::object_handle oh_,
         WriteHandlerT handler)
     {
-        s.get_io_service().post(
+        s.get_executor().context().post(
             [&s,h=std::move(handler),oh = std::move(oh_)] () mutable
             {
                 auto sbuf = std::make_shared<msgpack::sbuffer>();
