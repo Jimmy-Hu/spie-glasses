@@ -166,7 +166,7 @@ namespace api {
         ValueT & val,
         ReadHandlerT handler)
     {
-        s.get_io_service().post(
+        s.get_executor().context().post(
             [&s,&unp,&val,h=std::move(handler)]() mutable
             {
                 detail::do_async_read_msgpack(
