@@ -26,10 +26,10 @@ namespace api {
         basic_msgpack_reader(read_stream_type rs)
             : m_rs(std::forward<read_stream_type>(rs)) {}
         boost::asio::io_service & get_io_service() {
-            return m_rs.get_io_service();
+            return ((boost::asio::io_context&)m_rs.get_executor().context());
         }
         boost::asio::io_service const & get_io_service() const {
-            return m_rs.get_io_service();
+            return ((boost::asio::io_context&)m_rs.get_executor().context());
         }
         template <typename ValueT ,typename ReadHandlerT>
         void async_read(ValueT & value, ReadHandlerT rh)
