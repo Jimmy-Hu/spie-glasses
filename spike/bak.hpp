@@ -123,7 +123,7 @@
     //       , m_rq()
     //     {}
     //     void async_read(read_value_type v, read_handler_type h) {
-    //         m_reader.get_io_service().post(
+    //         m_reader.get_executor().context().post(
     //             [this, vv = std::forward<read_value_type>(v), hh = std::forward<read_handler_type>(h)]() mutable {
     //                 bool is_read_stopped = m_rq.empty();
     //                 m_rq.push_back(pair_type(std::forward<read_value_type>(v),std::forward<read_handler_type>(h)));
