@@ -43,7 +43,7 @@ public:
     }
 
 private:
-    void do_connect(tcp::resolver::iterator endpoint_iterator)
+    void do_connect(tcp::resolver::results_type endpoint_iterator)
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
