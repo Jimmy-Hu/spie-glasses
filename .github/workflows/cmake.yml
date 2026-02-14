@@ -54,6 +54,7 @@ jobs:
         brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas libx11
 
     - name: Patch Source Code for CI
+      if: runner.os == 'macOS' || runner.os == 'Linux'
       # Fix 1: 'get_io_service' error due to newer Boost version
       # Fix 2: OpenCV 4.x compatibility
       # Fix 3: Boost Resolver Iterator deprecation (hint-client)
