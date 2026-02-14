@@ -52,6 +52,14 @@ jobs:
       run: |
         brew update
         brew install cmake boost fmt msgpack-cxx opencv nlohmann-json zlib lz4 dlib openblas libx11
+    
+    - name: Install System Dependencies (windows-latest)
+      if: runner.os == 'Windows'
+      # Install libraries required by CMakeLists.txt on Windows via vcpkg
+      run: |
+        vcpkg install fmt:x64-windows msgpack-cxx:x64-windows asio:x64-windows nlohmann-json:x64-windows lz4:x64-windows
+        REM vcpkg install opencv:x64-windows
+      shell: cmd
 
     - name: Patch Source Code for CI
       if: runner.os == 'macOS' || runner.os == 'Linux'
