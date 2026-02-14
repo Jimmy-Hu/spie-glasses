@@ -1,4 +1,4 @@
-name: CMake Build
+name: CMake Build Matrix
 
 on:
   push:
@@ -12,12 +12,15 @@ env:
 
 jobs:
   build:
-    # Use matrix strategy to run on both Ubuntu and macOS
+    # The CMake configure and build commands are platform agnostic and should work equally well on Windows, Mac or Linux.
+    # See https://github.com/marketplace/actions/configure-cmake-build-machine-code-quality-and-more-for-cmake-projects
     runs-on: ${{ matrix.os }}
+
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macos-latest]
+        # Add windows-latest to the matrix to support Windows build
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
     - uses: actions/checkout@v3
