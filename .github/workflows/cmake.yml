@@ -169,10 +169,9 @@ jobs:
         mv "${DLIB_HEADER}.tmp" "${DLIB_HEADER}"
 
     - name: Configure CMake
-      # -DCMAKE_POLICY_VERSION_MINIMUM=3.5: Fixes policy error on new CMake
-      # -DBoost_NO_BOOST_CMAKE=ON: Fixes Boost 1.90 finding error on macOS (though we use OPTIONAL_COMPONENTS now, this is still safe)
-      # -Wno-dev: Suppresses warnings
-      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} -DCMAKE_POLICY_VERSION_MINIMUM=3.5 -DBoost_NO_BOOST_CMAKE=ON -Wno-dev
+      # -B sets the build directory
+      # -DCMAKE_BUILD_TYPE is needed for single-configuration generators (like Unix Makefiles)
+      run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
