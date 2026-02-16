@@ -174,4 +174,13 @@ jobs:
       run: cmake -B ${{github.workspace}}/build -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}}
 
     - name: Build
+      # --build starts the compilation
+      # --config is needed for multi-configuration generators (like Visual Studio on Windows)
       run: cmake --build ${{github.workspace}}/build --config ${{env.BUILD_TYPE}}
+
+    - name: Test
+      working-directory: ${{github.workspace}}/build
+      # Execute tests defined by the CMake configuration.
+      # -C specifies the configuration to test (Release/Debug)
+      # --output-on-failure makes it easier to debug CI failures
+      run: ctest -C ${{env.BUILD_TYPE}} --output-on-failure
