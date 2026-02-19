@@ -74,7 +74,7 @@ private:
         {
             boost::asio::async_connect(
                 m_socket, endpoint_iterator,
-                [this](boost::system::error_code const & ec, tcp::resolver::iterator)
+                [this](boost::system::error_code const & ec, tcp::resolver::results_type)
                 {
                     auto h = [](boost::system::error_code const & ec, msgpack::object_handle oh){
                         if (!ec) std::cerr << "[info][response] object=" << oh.get() << std::endl;
