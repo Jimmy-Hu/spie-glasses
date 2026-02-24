@@ -191,6 +191,7 @@ jobs:
       run: |
         vcpkg install fmt:x64-windows msgpack-c:x64-windows asio:x64-windows nlohmann-json:x64-windows lz4:x64-windows
         vcpkg install opencv:x64-windows
+        vcpkg install boost:x64-windows
       shell: cmd
 
     - name: Configure CMake
