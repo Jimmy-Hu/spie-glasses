@@ -93,7 +93,7 @@ namespace api {
         ValueT const & val,
         WriteHandlerT handler)
     {
-        s.get_io_service().post(
+        s.get_executor().context().post(
             [&s,h=std::move(handler),&val] () mutable
             {
                 auto sbuf = std::make_shared<msgpack::sbuffer>();
