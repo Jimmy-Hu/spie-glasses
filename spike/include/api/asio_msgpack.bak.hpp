@@ -173,8 +173,8 @@ namespace api {
         using write_stream_type = WriteStreamT;
         basic_buffer_writer(write_stream_type ws)
             : m_ws(std::forward<write_stream_type>(ws)) {}
-        boost::asio::io_service & get_io_service() {
-            return m_ws.get_io_service();
+        boost::asio::io_service & get_executor().context() {
+            return m_ws.get_executor().context();
         }
         boost::asio::io_service const & get_io_service() const {
             return m_ws.get_io_service();
