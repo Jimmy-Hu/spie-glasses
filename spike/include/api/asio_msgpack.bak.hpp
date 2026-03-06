@@ -213,8 +213,8 @@ namespace api {
             : m_writer(std::forward<WriterT>(writer))
             , m_wq()
             {}
-        boost::asio::io_service & get_io_service() {
-            return m_writer.get_io_service();
+        boost::asio::io_service & get_executor().context() {
+            return m_writer.get_executor().context();
         }
         boost::asio::io_service const & get_io_service() const {
             return m_writer.get_io_service();
