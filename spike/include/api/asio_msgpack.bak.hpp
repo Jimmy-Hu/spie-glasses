@@ -248,8 +248,8 @@ namespace api {
         using read_stream_type = ReadStreamT;
         basic_msgpack_handle_reader(read_stream_type rs)
             : m_rs(std::forward<read_stream_type>(rs)) {}
-        boost::asio::io_service & get_io_service() {
-            return m_rs.get_io_service();
+        boost::asio::io_service & get_executor().context() {
+            return m_rs.get_executor().context();
         }
         boost::asio::io_service const & get_io_service() const {
             return m_rs.get_io_service();
