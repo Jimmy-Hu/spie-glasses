@@ -293,8 +293,8 @@ namespace api {
         boost::asio::io_service & get_executor().context() {
             return m_reader.get_executor().context();
         }
-        boost::asio::io_service const & get_io_service() const {
-            return m_reader.get_io_service();
+        boost::asio::io_service const & get_executor().context() const {
+            return m_reader.get_executor().context();
         }
         void async_read(read_value_type & v, read_handler_type h) {
             m_reader.get_io_service().post(
