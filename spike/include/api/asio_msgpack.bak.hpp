@@ -297,7 +297,7 @@ namespace api {
             return m_reader.get_executor().context();
         }
         void async_read(read_value_type & v, read_handler_type h) {
-            m_reader.get_io_service().post(
+            m_reader.get_executor().context().post(
                 [this, &v, hh = std::move(h)]() mutable {
                     bool is_read_stopped = m_rq.empty();
                     m_rq.push_back(read_pair_type(v,std::move(hh)));
