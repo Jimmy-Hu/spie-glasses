@@ -220,7 +220,7 @@ namespace api {
             return m_writer.get_executor().context();
         }
         void async_write(write_value_type const & v, write_handler_type h) {
-            m_writer.get_io_service().post(
+            m_writer.get_executor().context().post(
                 [this, &v, hh = std::move(h)]() mutable {
                     bool is_write_stopped = m_wq.empty();
                     m_wq.push_back(write_pair_type(v,std::move(hh)));
