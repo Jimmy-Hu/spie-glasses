@@ -235,7 +235,7 @@ namespace api {
             m_writer.async_write(wv, std::move(wh));
             m_wq.pop_front();
             if (!m_wq.empty())
-                m_writer.get_io_service().post([this](){this->do_write();});
+                m_writer.get_executor().context().post([this](){this->do_write();});
         }
         writer_type m_writer;
         write_queue_type m_wq;
