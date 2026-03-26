@@ -251,8 +251,8 @@ namespace api {
         boost::asio::io_service & get_executor().context() {
             return m_rs.get_executor().context();
         }
-        boost::asio::io_service const & get_io_service() const {
-            return m_rs.get_io_service();
+        boost::asio::io_service const & get_executor().context() const {
+            return m_rs.get_executor().context();
         }
         template <typename ValueT ,typename ReadHandlerT>
         void async_read(ValueT & value, ReadHandlerT rh)
