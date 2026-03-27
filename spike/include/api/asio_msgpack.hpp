@@ -290,8 +290,8 @@ namespace api {
             : m_reader(std::forward<ReaderT>(reader))
             , m_rq()
             {}
-        boost::asio::io_service & get_io_service() {
-            return m_reader.get_io_service();
+        boost::asio::io_service & get_executor().context() {
+            return m_reader.get_executor().context();
         }
         boost::asio::io_service const & get_io_service() const {
             return m_reader.get_io_service();
