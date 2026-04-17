@@ -135,7 +135,7 @@ namespace api {
         msgpack::object_handle const & oh,
         WriteHandlerT handler)
     {
-        s.get_io_service().post(
+        s.get_executor().context().post(
             [&s,&oh,handler=std::move(handler)]
             (){
                 std::unique_ptr<msgpack::sbuffer> sbuf;
