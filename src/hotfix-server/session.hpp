@@ -70,7 +70,7 @@ public:
     }
 private:
     void do_exit() {
-        m_socket.get_io_service().post(
+        m_socket.get_executor().context().post(
             [this]() mutable
             {
                 auto sp = this->shared_from_this();
