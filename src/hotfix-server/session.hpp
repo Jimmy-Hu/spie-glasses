@@ -66,7 +66,7 @@ public:
         });
     }
     void close() {
-        m_socket.get_io_service().post([this](){ m_socket.close();});
+        m_socket.get_executor().context().post([this](){ m_socket.close();});
     }
 private:
     void do_exit() {
