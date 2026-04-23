@@ -18,7 +18,7 @@ class chat_client
 public:
     using command_type = std::vector<std::string>;
     chat_client(boost::asio::io_service& io_service,
-                tcp::resolver::iterator endpoint_iterator)
+                tcp::resolver::results_type endpoint_iterator)
         : m_ios(io_service),
           m_work(io_service),
           m_socket(io_service),
