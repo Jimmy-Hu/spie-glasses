@@ -48,7 +48,7 @@ public:
             });
     }
     void set_focus_session(std::uintptr_t p) {
-        m_acceptor.get_io_service().post(
+        m_acceptor.get_executor().context().post(
             [this,p](){
                 if (p == 0) {
                     session_ptr sp;
