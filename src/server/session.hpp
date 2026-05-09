@@ -71,7 +71,7 @@ public:
         m_msgio.async_dispatch(this->shared_from_this());
     }
     void close() {
-        m_socket.get_io_service().post([this](){ m_socket.close();});
+        m_socket.get_executor().context().post([this](){ m_socket.close();});
     }
     void write(std::vector<std::string> const & v) {
         auto sp = this->shared_from_this();
