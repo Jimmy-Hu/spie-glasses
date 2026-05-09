@@ -139,7 +139,7 @@ public:
     }
 
     void close() {
-        m_acceptor.get_io_service().post(
+        m_acceptor.get_executor().context().post(
             [this](){
                 for (auto kv : m_mgr) {
                     kv.first->close();
