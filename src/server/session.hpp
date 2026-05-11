@@ -105,7 +105,7 @@ public:
         using namespace std::placeholders;
         auto sp = this->shared_from_this();
         if (!sp) return;
-        m_socket.get_io_service().post([sp](){
+        m_socket.get_executor().context().post([sp](){
                 sp->m_stop = true;
                 sp->m_msgio.post("image_stop", std::make_tuple());
             });
