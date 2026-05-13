@@ -164,7 +164,7 @@ public:
     }
 private:
     void do_exit() {
-        m_socket.get_io_service().post(
+        m_socket.get_executor().context().post(
             [sp = this->shared_from_this()]() mutable
             {
                 sp->m_mgr.remove(sp);
