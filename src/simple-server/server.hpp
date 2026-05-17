@@ -74,7 +74,7 @@ public:
             });
     }
     void list_sessions() {
-        m_acceptor.get_io_service().post(
+        m_acceptor.get_executor().context().post(
             [this](){
                 for (auto & session : m_sessions) {
                     std::cerr << "[info] #" << session << "\n";
