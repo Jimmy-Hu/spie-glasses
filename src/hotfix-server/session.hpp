@@ -66,11 +66,11 @@ public:
         });
     }
     void close() {
-        m_socket.get_executor().context().post([this](){ m_socket.close();});
+        boost::asio::post(m_socket.get_executor(), [this](){ m_socket.close();});
     }
 private:
     void do_exit() {
-        m_socket.get_executor().context().post(
+        boost::asio::post(m_socket.get_executor(), 
             [this]() mutable
             {
                 auto sp = this->shared_from_this();
