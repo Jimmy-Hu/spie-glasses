@@ -164,7 +164,7 @@ public:
     }
 private:
     void do_exit() {
-        m_socket.get_executor().context().post(
+        boost::asio::post(m_socket.get_executor(), 
             [sp = this->shared_from_this()]() mutable
             {
                 sp->m_mgr.remove(sp);
