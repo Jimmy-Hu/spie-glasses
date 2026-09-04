@@ -83,7 +83,8 @@ namespace api {
         msgpack::object_handle & oh,
         ReadHandlerT handler)
     {
-        s.get_executor().context().post(
+        boost::asio::post(
+            s.get_executor(),
             [&s,&unp,&oh,handler=std::move(handler)]
             (){
                 detail::do_async_read_msgpack(
