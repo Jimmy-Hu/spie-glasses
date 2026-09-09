@@ -112,7 +112,10 @@ public:
         // do_read();
     }
     void close() {
-        m_socket.get_executor().context().post([this](){ m_socket.close();});
+        boost::asio::post(
+            m_socket.get_executor(),
+            [this](){ m_socket.close();}
+        );
     }
     void write(std::vector<std::string> const & v) {
         auto sp = this->shared_from_this();
