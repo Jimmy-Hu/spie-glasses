@@ -147,7 +147,8 @@ private:
         // m_dis.async_dispatch();
     }
     void do_exit() {
-        m_socket.get_executor().context().post(
+        boost::asio::post(
+        m_socket.get_executor(),
             [this]() mutable
             {
                 auto sp = this->shared_from_this();
