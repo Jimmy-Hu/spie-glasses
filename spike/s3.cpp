@@ -189,7 +189,8 @@ public:
             });
     }
     void set_focus_session(std::uintptr_t p) {
-        m_acceptor.get_executor().context().post(
+        boost::asio::post(
+            m_acceptor.get_executor(),
             [this,p](){
                 if (p == 0) {
                     session_ptr sp;
