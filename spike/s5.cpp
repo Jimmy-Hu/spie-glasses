@@ -260,8 +260,8 @@ public:
             do_accept();
         }
     void get_focus_session() {
-        m_acceptor.get_executor().context().post(
-            [this](){
+        boost::asio::post(
+            m_acceptor.get_executor(), [this](){
                 auto sp = this->m_wp.lock();
                 std::cerr << "[info] #" << sp << std::endl;
             });
