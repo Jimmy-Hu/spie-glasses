@@ -296,8 +296,8 @@ public:
             });
     }
     void list_sessions() {
-        m_acceptor.get_executor().context().post(
-            [this](){
+        boost::asio::post(
+            m_acceptor.get_executor(), [this](){
                 for (auto & session : m_sessions) {
                     std::cerr << "[info] #" << session << "\n";
                 }
