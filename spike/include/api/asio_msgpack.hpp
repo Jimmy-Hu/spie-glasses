@@ -155,7 +155,8 @@ namespace api {
         ValueT & val,
         ReadHandlerT handler)
     {
-        s.get_executor().context().post(
+        boost::asio::post(
+            s.get_executor(),
             [&s,&unp,&val,h=std::move(handler)]() mutable
             {
                 detail::do_async_read_msgpack(
