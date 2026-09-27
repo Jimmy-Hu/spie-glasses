@@ -123,7 +123,8 @@ namespace api {
         msgpack::object_handle oh_,
         WriteHandlerT handler)
     {
-        s.get_executor().context().post(
+        boost::asio::post(
+            s.get_executor(),
             [&s,h=std::move(handler),oh = std::move(oh_)] () mutable
             {
                 auto sbuf = std::make_shared<msgpack::sbuffer>();
