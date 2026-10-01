@@ -303,7 +303,8 @@ namespace api {
             return m_reader.get_executor().context();
         }
         void async_read(read_value_type & v, read_handler_type h) {
-            m_reader.get_executor().context().post(
+            boost::asio::post(
+                m_reader.get_executor(),
                 [this, &v, hh = std::move(h)]() mutable {
                     bool is_read_stopped = m_rq.empty();
                     m_rq.push_back(read_pair_type(v,std::move(hh)));
