@@ -4,6 +4,7 @@
 #ifndef API_ASIO_MSGPACK_HPP_INCLUDED
 #define API_ASIO_MSGPACK_HPP_INCLUDED
 #include <boost/asio.hpp>
+#include <concepts>
 #include <iostream>
 #include <utility>
 #include <memory>
@@ -129,6 +130,7 @@ namespace api {
         typename AsyncWriteStreamT,
         typename MessageT,
         typename WriteHandlerT>
+    requires(std::invocable<WriteHandlerT, boost::system::error_code, std::size_t>)
     void
     async_write_msgpack(
         AsyncWriteStreamT const & s,
