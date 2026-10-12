@@ -15,6 +15,7 @@ namespace api {
             typename AsyncReadStreamT,
             typename MessageT,
             typename ReadHandlerT>
+        requires(std::invocable<ReadHandlerT, boost::system::error_code, std::size_t>)
         void
         do_async_read_msgpack(
             AsyncReadStreamT & s,
