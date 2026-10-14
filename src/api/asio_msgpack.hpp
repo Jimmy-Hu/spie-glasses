@@ -14,6 +14,7 @@ namespace api {
         template <
             typename AsyncReadStreamT,
             typename MessageT,
+            typename ValueT,
             typename ReadHandlerT>
         requires(std::invocable<ReadHandlerT, boost::system::error_code, std::size_t>)
         void
