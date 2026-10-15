@@ -57,6 +57,7 @@ namespace api {
         do_async_read_msgpack(
             AsyncReadStreamT & s,
             msgpack::unpacker & unp,
+            ValueT & val,
             ReadHandlerT & handler,
             boost::system::error_code ec,
             size_t byte_transfered)
