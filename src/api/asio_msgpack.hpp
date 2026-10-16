@@ -66,6 +66,7 @@ namespace api {
                 handler(ec,0);
             }
             else if (unp.next(oh)) {
+                val = oh.get();
                 handler(ec,byte_transfered - unp.nonparsed_size());
             }
             else {
