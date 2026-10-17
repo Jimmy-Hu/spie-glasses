@@ -73,7 +73,7 @@ namespace api {
                 unp.reserve_buffer(std::max(unp.buffer_capacity(), 512));
                 s.async_read_some(
                     boost::asio::buffer(unp.buffer(), unp.buffer_capacity()),
-                    [&s,&unp,&oh,h=std::move(handler),ec,byte_transfered]
+                    [&s,&unp,&val,h=std::move(handler),ec,byte_transfered]
                     (boost::system::error_code ec, std::size_t n) {
                         unp.buffer_consumed(n);
                         do_async_read_msgpack(s,unp,oh,std::move(h),ec,byte_transfered+n);
