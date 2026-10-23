@@ -1,6 +1,7 @@
 #ifndef API_ASIO_MSGPACK_HPP_INCLUDED
 #define API_ASIO_MSGPACK_HPP_INCLUDED
 #include <boost/asio.hpp>
+#include <concepts>
 #include <map>
 #include <msgpack.hpp>
 #include <iostream>
