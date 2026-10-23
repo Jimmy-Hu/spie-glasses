@@ -263,6 +263,7 @@ namespace api {
             return m_rs.get_executor().context();
         }
         template <typename ValueT ,typename ReadHandlerT>
+        requires(std::invocable<ReadHandlerT, boost::system::error_code const &>)
         void async_read(ValueT & value, ReadHandlerT rh)
             {
                 async_read_msgpack(
