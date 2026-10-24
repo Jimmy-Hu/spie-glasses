@@ -14,16 +14,16 @@
 
 find_path(Msgpack_INCLUDES NAMES msgpack.h msgpack.hpp PATH_SUFFIXES msgpack)
 if (Msgpack_STATIC)
-  find_library(Msgpack_LIBRARIES NAMES libmsgpackc.a msgpackc libmsgpackc )
+  find_library(Msgpack_LIBRARIES NAMES msgpack libmsgpackc.a msgpackc libmsgpackc )
 else()
-  find_library(Msgpack_LIBRARIES NAMES msgpackc libmsgpackc)
+  find_library(Msgpack_LIBRARIES NAMES msgpack msgpackc libmsgpackc)
 endif()
 
 include(FindPackageHandleStandardArgs)
 # handle the QUIETLY and REQUIRED arguments and set Msgpack_FOUND to TRUE
 # if all listed variables are TRUE
 find_package_handle_standard_args(Msgpack DEFAULT_MSG
-                                  Msgpack_LIBRARIES Msgpack_INCLUDES)
+                                  Msgpack_INCLUDES)
 
 set(Msgpack_LIBRARY      ${Msgpack_LIBRARIES})
 set(Msgpack_LIBS         ${Msgpack_LIBRARIES})
