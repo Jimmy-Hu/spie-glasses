@@ -144,7 +144,7 @@ else()
   
   # Boost
   set(Boost_COMPONENTS system)
-  find_package(Boost REQUIRED COMPONENTS ${Boost_COMPONENTS})
+  find_package(Boost COMPONENTS ${Boost_COMPONENTS})
   
   # Msgpack
   find_package(Msgpack REQUIRED)
