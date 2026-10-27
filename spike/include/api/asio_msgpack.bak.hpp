@@ -110,7 +110,7 @@ namespace api {
                     s,
                     boost::asio::buffer(sbuf->data(),sbuf->size()),
                     [sbuf,hh=std::move(h)]
-                    (boost::system::error_code const & ec, size_t len)
+                    (boost::system::error_code const & ec, std::size_t len)
                     mutable
                     {
                         hh(ec,len);
