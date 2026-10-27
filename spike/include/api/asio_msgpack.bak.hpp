@@ -90,6 +90,7 @@ namespace api {
         typename AsyncWriteStreamT,
         typename ValueT,
         typename WriteHandlerT>
+    requires(std::invocable<WriteHandlerT, boost::system::error_code const &, std::size_t>)
     void
     async_write_msgpack(
         AsyncWriteStreamT & s,
