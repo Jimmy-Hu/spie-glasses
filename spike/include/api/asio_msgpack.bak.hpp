@@ -193,7 +193,7 @@ namespace api {
                     m_ws,
                     boost::asio::buffer(buf.data(), buf.size()),
                     [wh_=std::move(wh)]
-                    (boost::system::error_code const & ec, size_t /*len*/)
+                    (boost::system::error_code const & ec, std::size_t /*len*/)
                     mutable
                     {
                         wh_(ec);
