@@ -324,8 +324,12 @@ namespace api {
             auto & rh = m_rq.front().second;
             m_reader.async_read(rv, std::move(rh));
             m_rq.pop_front();
-            if (!m_rq.empty())
-                m_reader.get_executor().context().post(std::bind(&this->do_read,this));
+            if (!m_rq.empty()) {
+                boost::asio::post(
+                    m_reader.get_executor(),
+                    std::bind(&this->do_read,this)
+                    );
+            }
         }
         reader_type m_reader;
         read_queue_type m_rq;
