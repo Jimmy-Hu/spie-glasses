@@ -142,7 +142,8 @@ public:
     }
 
     void close() {
-        m_acceptor.get_executor().context().post(
+        boost::asio::post(
+            m_acceptor.get_executor(),
             [this](){
                 for (auto kv : m_mgr) {
                     kv.first->close();
