@@ -9,7 +9,11 @@
 #include <cstring>
 #include <fmt/format.h>
 
+#if BOOST_VERSION >= 108800
+namespace bp = boost::process::v1;
+#else
 namespace bp = boost::process;
+#endif
 int a1();
 int a2();
 int a3();
