@@ -34,7 +34,7 @@ int main (int argc, char** argv) {
 int a1()
 {
     fmt::print("{} called\n", __func__);
-    boost::asio::io_service ios;
+    boost::asio::io_context ios;
     std::vector<char> buf;
 
     bp::async_pipe ap(ios);
