@@ -44,6 +44,7 @@ $SUDO apt-get install -y \
     libboost-all-dev \
     libfmt-dev \
     libmsgpack-dev \
+    libmsgpack-cxx-dev \
     libopencv-dev \
     nlohmann-json3-dev \
     zlib1g-dev \
