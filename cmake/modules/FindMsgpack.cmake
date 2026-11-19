@@ -12,12 +12,12 @@
 #  Msgpack_DEFINITIONS - Compiler switches required for using Msgpack
 
 
-find_path(Msgpack_INCLUDES NAMES msgpack.h msgpack.hpp PATH_SUFFIXES msgpack)
-if (Msgpack_STATIC)
-  find_library(Msgpack_LIBRARIES NAMES msgpack libmsgpackc.a msgpackc libmsgpackc )
-else()
-  find_library(Msgpack_LIBRARIES NAMES msgpack msgpackc libmsgpackc)
-endif()
+find_path(Msgpack_INCLUDES
+  NAMES msgpack.hpp
+  HINTS /opt/homebrew/include /usr/local/include
+)
+# MessagePack for C++ (msgpack.hpp) is header-only across platforms.
+set(Msgpack_LIBRARIES "")
 
 include(FindPackageHandleStandardArgs)
 # handle the QUIETLY and REQUIRED arguments and set Msgpack_FOUND to TRUE
