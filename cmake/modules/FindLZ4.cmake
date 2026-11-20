@@ -12,11 +12,11 @@
 #  LZ4_DEFINITIONS - Compiler switches required for using LZ4
 
 
-find_path(LZ4_INCLUDES NAMES lz4.h)
+find_path(LZ4_INCLUDES NAMES lz4.h HINTS /opt/homebrew/include /usr/local/include)
 if (LZ4_STATIC)
-  find_library(LZ4_LIBRARIES NAMES liblz4.a lz4 liblz4)
+  find_library(LZ4_LIBRARIES NAMES liblz4.a lz4 liblz4 HINTS /opt/homebrew/lib /usr/local/lib)
 else()
-  find_library(LZ4_LIBRARIES NAMES lz4 liblz4)
+  find_library(LZ4_LIBRARIES NAMES lz4 liblz4 HINTS /opt/homebrew/lib /usr/local/lib)
 endif()
 
 include(FindPackageHandleStandardArgs)
