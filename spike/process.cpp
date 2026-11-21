@@ -1,7 +1,12 @@
+#include <boost/version.hpp>
+#if BOOST_VERSION >= 108800
+#include <boost/process/v1.hpp>
+using namespace boost::process::v1;
+#else
 #include <boost/process.hpp>
-#include <iostream>
-
 using namespace boost::process;
+#endif
+#include <iostream>
 
 int main()
 {
