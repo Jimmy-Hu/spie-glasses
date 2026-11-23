@@ -37,10 +37,10 @@ class client
 {
 public:
     using command_type = std::vector<std::string>;
-    client(boost::asio::io_service& io_service,
+    client(boost::asio::io_context& io_context,
                 tcp::resolver::results_type endpoint_iterator)
-        : m_ios(io_service)
-        , m_socket(io_service)
+        : m_ios(io_context)
+        , m_socket(io_context)
         , m_msgio(m_socket)
     {
         do_connect(endpoint_iterator);
@@ -110,7 +110,7 @@ private:
         m_socket.close();
     }
 private:
-    boost::asio::io_service& m_ios;
+    boost::asio::io_context& m_ios;
     tcp::socket m_socket;
     api::message_io_object m_msgio;
 };
