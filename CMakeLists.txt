@@ -3,7 +3,11 @@
 ##
 ## Original Author: ChienYu Lin
 ##
-cmake_minimum_required (VERSION 3.5) # Update to 3.5 to meet modern macOS/CMake requirements
+cmake_minimum_required(VERSION 3.15) # Require CMake 3.15+ for modern CMake/Boost 1.92+ compatibility
+
+if(POLICY CMP0167)
+  cmake_policy(SET CMP0167 NEW) # Use upstream BoostConfig.cmake (required on CMake 3.30+ / Boost 1.89+)
+endif()
 
 # ------------------------------------------------------------------------------
 # Hunter Package Manager Setup (Reserved from original settings)
