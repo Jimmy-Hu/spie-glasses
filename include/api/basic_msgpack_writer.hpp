@@ -25,11 +25,20 @@ namespace api {
         using write_stream_type = WriteStreamT;
         basic_msgpack_writer(write_stream_type ws)
             : m_ws(std::forward<write_stream_type>(ws)) {}
-        boost::asio::io_service & get_io_service() {
-            return (boost::asio::io_context&)m_ws.get_executor().context();
+        auto get_executor() {
+            return m_ws.get_executor();
         }
-        boost::asio::io_service const & get_io_service() const {
-            return (boost::asio::io_context&)m_ws.get_executor().context();
+        boost::asio::io_context & get_io_context() {
+            return static_cast<boost::asio::io_context &>(m_ws.get_executor().context());
+        }
+        boost::asio::io_context const & get_io_context() const {
+            return static_cast<boost::asio::io_context const &>(m_ws.get_executor().context());
+        }
+        boost::asio::io_context & get_io_service() {
+            return get_io_context();
+        }
+        boost::asio::io_context const & get_io_service() const {
+            return get_io_context();
         }
         template <typename BufferT, typename WriteHandlerT>
         void async_write(BufferT const & buf, WriteHandlerT wh)
