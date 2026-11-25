@@ -32,14 +32,23 @@ namespace api {
             : m_reader(std::forward<ReaderT>(reader))
             , m_rq()
             {}
-        boost::asio::io_service & get_io_service() {
-            return m_reader.get_io_service();
+        auto get_executor() {
+            return m_reader.get_executor();
         }
-        boost::asio::io_service const & get_io_service() const {
-            return m_reader.get_io_service();
+        boost::asio::io_context & get_io_context() {
+            return m_reader.get_io_context();
+        }
+        boost::asio::io_context const & get_io_context() const {
+            return m_reader.get_io_context();
+        }
+        boost::asio::io_context & get_io_service() {
+            return m_reader.get_io_context();
+        }
+        boost::asio::io_context const & get_io_service() const {
+            return m_reader.get_io_context();
         }
         void async_read(read_value_type & v, read_handler_type h) {
-            m_reader.get_io_service().post(
+            boost::asio::post(m_reader.get_executor(),
                 [this, &v, hh = std::move(h)]() mutable {
                     bool is_read_stopped = m_rq.empty();
                     m_rq.push_back(read_pair_type(v,std::move(hh)));
@@ -54,7 +63,7 @@ namespace api {
             m_reader.async_read(rv, std::move(rh));
             m_rq.pop_front();
             if (!m_rq.empty())
-                m_reader.get_io_service().post(
+                boost::asio::post(m_reader.get_executor(),
                     [this](){this->do_read();});
         }
         reader_type m_reader;
