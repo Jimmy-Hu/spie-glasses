@@ -34,11 +34,20 @@ namespace api {
             , m_res(m_qw)
             , m_dis(m_r,m_req,m_res)
             {}
-        boost::asio::io_service & get_io_service() {
-            return m_r.get_io_service();
+        auto get_executor() {
+            return m_r.get_executor();
         }
-        boost::asio::io_service const & get_io_service() const {
-            return m_r.get_io_service();
+        boost::asio::io_context & get_io_context() {
+            return m_r.get_io_context();
+        }
+        boost::asio::io_context const & get_io_context() const {
+            return m_r.get_io_context();
+        }
+        boost::asio::io_context & get_io_service() {
+            return m_r.get_io_context();
+        }
+        boost::asio::io_context const & get_io_service() const {
+            return m_r.get_io_context();
         }
         template<typename TagT, typename TupleT, typename HandlerT>
         void request(TagT && tag, TupleT const & t, HandlerT h) {
